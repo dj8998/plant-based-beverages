@@ -16,21 +16,21 @@ const ConnectSteps = () => {
     {
       title: "Get Personalized Sourcing Manager",
       description: "Our sourcing experts will guide you with tailored recommendations whether you're looking for sustainable materials, specific compliance standards, or scalable production.",
-      buttonText: "Post an Inquiry"
+      buttonText: "Book a 30 mins call"
     }
   ];
 
   return (
-    <div className="bg-blue-light py-16">
+    <div className="bg-blue-light py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-2xl font-bold mb-12">3 WAYS TO CONNECT WITH A MANUFACTURING PARTNER IN 48 HOURS. FREE</h2>
+        <h2 className="text-center text-2xl font-bold mb-8">3 WAYS TO CONNECT WITH A MANUFACTURING PARTNER IN 48 HOURS. FREE</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step, index) => (
-            <div key={index} className="bg-white rounded-lg p-6 shadow-sm">
+            <div key={index} className="bg-white rounded-lg p-6 shadow-sm flex flex-col h-full">
               <h3 className="font-semibold text-xl mb-4">{step.title}</h3>
-              <p className="text-gray-600 mb-6 h-40">{step.description}</p>
-              <Button className="bg-black text-white hover:bg-gray-800 w-full">{step.buttonText}</Button>
+              <p className="text-gray-600 mb-6 flex-grow">{step.description}</p>
+              <Button className="bg-black text-white hover:bg-gray-800 w-full mt-auto">{step.buttonText}</Button>
             </div>
           ))}
         </div>
