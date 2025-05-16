@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import categoriesData from '../data/categories.json';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -20,28 +20,30 @@ const CategoryNav: React.FC = () => {
           {visibleCategories.map((category) => (
             <div 
               key={category.id}
-              className="relative p-1 md:p-0"
+              className="relative p-1 md:p-0 group"
               onMouseEnter={() => setHoveredCategory(category.id)}
               onMouseLeave={() => setHoveredCategory(null)}
             >
-              <div className="whitespace-nowrap py-2 md:py-4 px-2 md:px-4 text-sm font-medium text-gray-900 hover:text-gray-600 hover:border-b-2 hover:border-gray-900">
+              <div className="whitespace-nowrap py-2 md:py-4 px-2 md:px-4 text-sm font-medium text-gray-900 hover:text-gray-600 hover:border-b-2 hover:border-gray-900 cursor-pointer">
                 {category.name}
               </div>
               
               {/* Dropdown menu for subcategories on hover */}
-              {hoveredCategory === category.id && (
-                <div className="absolute left-0 mt-0 w-48 bg-white border border-gray-200 rounded-b shadow-lg z-10">
-                  {category.subcategories.map(subcategory => (
-                    <Link
-                      key={subcategory.id}
-                      to={`/category/${category.id}/${subcategory.id}`}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      {subcategory.name}
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <div 
+                className={`absolute left-0 mt-0 w-48 bg-white border border-gray-200 rounded-b shadow-lg z-10 transition-all duration-200 transform origin-top ${
+                  hoveredCategory === category.id ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+                }`}
+              >
+                {category.subcategories.map(subcategory => (
+                  <Link
+                    key={subcategory.id}
+                    to={`/category/${category.id}/${subcategory.id}`}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    {subcategory.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           ))}
         </div>
