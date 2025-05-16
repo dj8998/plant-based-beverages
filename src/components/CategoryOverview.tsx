@@ -4,16 +4,16 @@ import categoriesData from '../data/categories.json';
 
 const CategoryOverview = () => {
   return (
-    <div className="bg-pink-light py-12">
+    <div className="bg-pink-light py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <p className="text-lg text-gray-800">
             Qualfirst brings professionalism to India's export industry. Browse our most in-demand product categories
             to find verified manufacturers across 2,000+ specialised lines
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categoriesData.categories.map((category) => (
             <div key={category.id} className="bg-white rounded-lg p-6 shadow-sm">
               <div className="flex items-center mb-4">
@@ -35,7 +35,7 @@ const CategoryOverview = () => {
           ))}
         </div>
         
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <Link to="/categories">
             <button className="bg-black text-white px-6 py-3 rounded-sm hover:bg-gray-800">
               Browse All Categories
