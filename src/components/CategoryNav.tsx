@@ -2,11 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import categoriesData from '../data/categories.json';
-import { useMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const CategoryNav: React.FC = () => {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   
   // Limit categories for mobile view
   const visibleCategories = isMobile 
