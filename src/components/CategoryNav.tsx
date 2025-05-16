@@ -1,30 +1,34 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import categoriesData from '../data/categories.json';
+import { useMobile } from '@/hooks/use-mobile';
 
 const CategoryNav: React.FC = () => {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  const isMobile = useMobile();
+  
+  // Limit categories for mobile view
+  const visibleCategories = isMobile 
+    ? categoriesData.categories.slice(0, 5) 
+    : categoriesData.categories;
 
   return (
     <div className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-3 md:flex md:justify-between overflow-x-auto hide-scrollbar">
-          {categoriesData.categories.map((category) => (
+        <div className="grid grid-cols-3 grid-rows-2 md:flex md:justify-between overflow-x-auto hide-scrollbar">
+          {visibleCategories.map((category) => (
             <div 
               key={category.id}
-              className="relative"
+              className="relative p-1 md:p-0"
               onMouseEnter={() => setHoveredCategory(category.id)}
               onMouseLeave={() => setHoveredCategory(null)}
             >
-              <Link 
-                to={`/category/${category.id}`}
-                className="whitespace-nowrap py-4 px-2 md:px-4 text-sm font-medium text-gray-900 hover:text-gray-600 hover:border-b-2 hover:border-gray-900 block"
-              >
+              <div className="whitespace-nowrap py-2 md:py-4 px-2 md:px-4 text-sm font-medium text-gray-900 hover:text-gray-600 hover:border-b-2 hover:border-gray-900">
                 {category.name}
-              </Link>
+              </div>
               
-              {/* Dropdown menu for subcategories */}
+              {/* Dropdown menu for subcategories on hover */}
               {hoveredCategory === category.id && (
                 <div className="absolute left-0 mt-0 w-48 bg-white border border-gray-200 rounded-b shadow-lg z-10">
                   {category.subcategories.map(subcategory => (

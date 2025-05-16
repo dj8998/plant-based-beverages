@@ -70,23 +70,30 @@ const Navbar = () => {
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+              
+              <NavigationMenu>
+                <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
                     <NavigationMenuContent className="bg-white">
                       <div className="p-4 w-[200px]">
-                        <Link to="/our-mission" className="block py-2 hover:text-blue-600">About Us</Link>
+                        <Link to="/about-us" className="block py-2 hover:text-blue-600">About Us</Link>
                         <Link to="/blog" className="block py-2 hover:text-blue-600">Blog</Link>
                         <Link to="/contact" className="block py-2 hover:text-blue-600">Contact Us</Link>
-                        <Link to="/schedule" className="block py-2 hover:text-blue-600">Schedule a Meeting</Link>
+                        <Link to="/request-callback" className="block py-2 hover:text-blue-600">Schedule a Meeting</Link>
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
               
-              <Button className="bg-black text-white hover:bg-gray-800">
-                Raise a Requirement
-              </Button>
+              <Link to="/post-request">
+                <Button className="bg-black text-white hover:bg-gray-800">
+                  Raise a Requirement
+                </Button>
+              </Link>
             </div>
           </div>
 
@@ -146,7 +153,7 @@ const Navbar = () => {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="bg-white w-[200px]">
                           <DropdownMenuItem asChild>
-                            <Link to="/our-mission">About Us</Link>
+                            <Link to="/about-us">About Us</Link>
                           </DropdownMenuItem>
                           <DropdownMenuItem asChild>
                             <Link to="/blog">Blog</Link>
@@ -155,15 +162,17 @@ const Navbar = () => {
                             <Link to="/contact">Contact Us</Link>
                           </DropdownMenuItem>
                           <DropdownMenuItem asChild>
-                            <Link to="/schedule">Schedule a Meeting</Link>
+                            <Link to="/request-callback">Schedule a Meeting</Link>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
                     
-                    <Button className="w-full bg-black text-white hover:bg-gray-800">
-                      Raise a Requirement
-                    </Button>
+                    <Link to="/post-request" className="block">
+                      <Button className="w-full bg-black text-white hover:bg-gray-800">
+                        Raise a Requirement
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </DrawerContent>
