@@ -1,0 +1,74 @@
+
+{
+  "categories": [
+    {
+      "id": "home-living",
+      "name": "Home & Living",
+      "subcategories": [
+        { "id": "furniture", "name": "Furniture" },
+        { "id": "decor", "name": "Decor" },
+        { "id": "rugs", "name": "Rugs" },
+        { "id": "garden-accessories", "name": "Garden Accessories" },
+        { "id": "lighting", "name": "Lighting" },
+        { "id": "handicrafts", "name": "Handicrafts" }
+      ]
+    },
+    {
+      "id": "fashion-lifestyle",
+      "name": "Fashion & Lifestyle",
+      "subcategories": [
+        { "id": "mens-clothing", "name": "Men's Clothing" },
+        { "id": "womens-clothing", "name": "Women's Clothing" },
+        { "id": "baby-products", "name": "Baby Products" },
+        { "id": "handcrafted-garments", "name": "Handcrafted Garments" },
+        { "id": "scarves", "name": "Scarves" },
+        { "id": "scarves", "name": "Scarves" },
+        { "id": "accessories", "name": "Accessories" }
+      ]
+    },
+    {
+      "id": "festive-gifting",
+      "name": "Festive & Gifting",
+      "subcategories": [
+        { "id": "christmas-decor", "name": "Christmas Decor" },
+        { "id": "corporate-gifts", "name": "Corporate Gifts" },
+        { "id": "aromatics", "name": "Aromatics" },
+        { "id": "candles", "name": "Candles" },
+        { "id": "incense", "name": "Incense" }
+      ]
+    },
+    {
+      "id": "tableware-kitchen",
+      "name": "Tableware & Kitchen",
+      "subcategories": [
+        { "id": "glassware", "name": "Glassware" },
+        { "id": "kitchenware", "name": "Kitchenware" },
+        { "id": "metalware", "name": "Metalware" },
+        { "id": "handmade-paper", "name": "Handmade Paper" },
+        { "id": "gift-wraps", "name": "Gift Wraps" }
+      ]
+    },
+    {
+      "id": "wellness-bath",
+      "name": "Wellness & Bath",
+      "subcategories": [
+        { "id": "bathroom-accessories", "name": "Bathroom Accessories" },
+        { "id": "natural-soaps", "name": "Natural Soaps" },
+        { "id": "towels", "name": "Towels" },
+        { "id": "organic-products", "name": "Organic Products" },
+        { "id": "textile-products", "name": "Textile Products" }
+      ]
+    },
+    {
+      "id": "craft-supplies",
+      "name": "Craft Supplies",
+      "subcategories": [
+        { "id": "handmade-paper", "name": "Handmade Paper" },
+        { "id": "soft-toys", "name": "Soft Toys" },
+        { "id": "ribbons", "name": "Ribbons" },
+        { "id": "stationery-items", "name": "Stationery Items" },
+        { "id": "packaging-materials", "name": "Packaging Materials" }
+      ]
+    }
+  ]
+}
