@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import SubcategoryPage from "./pages/SubcategoryPage";
+import ProductPage from "./pages/ProductPage"; // We'll create this
 import InquiryPage from "./pages/InquiryPage";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/category/:categoryId" element={<CategoryPage />} />
           <Route path="/category/:categoryId/:subcategoryId" element={<SubcategoryPage />} />
+          <Route path="/product/:productSlug" element={<ProductPage />} />
           <Route path="/inquiry" element={<InquiryPage />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/our-mission" element={<AboutUs />} />

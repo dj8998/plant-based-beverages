@@ -30,8 +30,8 @@ const CategoryNav: React.FC = () => {
               
               {/* Dropdown menu for subcategories on hover */}
               <div 
-                className={`absolute left-0 mt-0 w-48 bg-white border border-gray-200 rounded-b shadow-lg z-10 transition-all duration-200 transform origin-top ${
-                  hoveredCategory === category.id ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+                className={`absolute left-0 mt-0 w-64 bg-white border border-gray-200 rounded-b shadow-lg z-10 transition-all duration-200 ${
+                  hoveredCategory === category.id ? 'opacity-100 visible' : 'opacity-0 invisible'
                 }`}
               >
                 {category.subcategories.map(subcategory => (
