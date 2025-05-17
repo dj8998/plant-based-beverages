@@ -92,6 +92,11 @@ const ProductSearch = () => {
     // This would typically navigate to search results page with the query
   };
 
+  // Helper function to create URL-safe slug
+  const createSlug = (text: string): string => {
+    return text.toLowerCase().replace(/\s+/g, '-');
+  };
+
   return (
     <div className="bg-pink-light py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -131,7 +136,7 @@ const ProductSearch = () => {
                       key={index}
                       to={result.type === 'subcategory' 
                         ? `/category/${result.categoryId}/${result.subcategoryId}` 
-                        : `/product/${result.productName?.replaceAll(' ', '-').toLowerCase()}`}
+                        : `/product/${createSlug(result.name)}`}
                       className="block px-4 py-2 text-sm hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
                       onClick={() => setShowDropdown(false)}
                     >
