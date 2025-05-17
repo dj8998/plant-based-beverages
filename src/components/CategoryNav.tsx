@@ -14,7 +14,7 @@ const CategoryNav: React.FC = () => {
     : categoriesData.categories;
 
   return (
-    <div className="bg-white border-b border-gray-200 relative">
+    <div className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-3 grid-rows-2 md:flex md:justify-between overflow-x-auto hide-scrollbar">
           {visibleCategories.map((category) => (
@@ -28,10 +28,16 @@ const CategoryNav: React.FC = () => {
                 {category.name}
               </div>
               
-              {/* Dropdown menu for subcategories on hover */}
+              {/* Dropdown menu for subcategories on hover - Fixed positioning */}
               {hoveredCategory === category.id && (
                 <div 
                   className="absolute left-0 mt-0 w-64 bg-white border border-gray-200 rounded-b shadow-lg z-50"
+                  style={{ 
+                    position: 'absolute',
+                    top: '100%',
+                    left: '0',
+                    zIndex: 100
+                  }}
                 >
                   {category.subcategories.map(subcategory => (
                     <Link

@@ -138,11 +138,17 @@ const Navbar = () => {
                   <Search className="h-4 w-4 text-gray-400" />
                 </div>
                 
-                {/* Search results dropdown */}
+                {/* Search results dropdown with fixed positioning and higher z-index */}
                 {showDropdown && (
                   <div 
                     ref={dropdownRef}
-                    className="absolute mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-80 overflow-y-auto"
+                    className="absolute mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-80 overflow-y-auto"
+                    style={{ 
+                      zIndex: 1000,
+                      position: 'absolute',
+                      top: '100%',
+                      left: 0,
+                    }}
                   >
                     {searchResults.length > 0 ? (
                       <div>
