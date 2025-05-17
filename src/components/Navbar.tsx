@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Search, ChevronDown } from 'lucide-react';
@@ -190,10 +189,16 @@ const Navbar = () => {
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Explore Suppliers</NavigationMenuTrigger>
                     <NavigationMenuContent className="bg-white">
-                      <div className="p-4 w-[200px]">
-                        <Link to="/category/1" className="block py-2 hover:text-blue-600">Clothing</Link>
-                        <Link to="/category/2" className="block py-2 hover:text-blue-600">Home Furnishing</Link>
-                        <Link to="/category/3" className="block py-2 hover:text-blue-600">Handicrafts</Link>
+                      <div className="p-4 w-[250px]">
+                        {categoriesData.categories.map((category) => (
+                          <Link 
+                            key={category.id}
+                            to={`/category/${category.id}`} 
+                            className="block py-2 hover:text-blue-600"
+                          >
+                            {category.name}
+                          </Link>
+                        ))}
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
@@ -256,16 +261,12 @@ const Navbar = () => {
                             <ChevronDown className="h-4 w-4 ml-2" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="bg-white w-[200px]">
-                          <DropdownMenuItem asChild>
-                            <Link to="/category/1">Clothing</Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link to="/category/2">Home Furnishing</Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link to="/category/3">Handicrafts</Link>
-                          </DropdownMenuItem>
+                        <DropdownMenuContent align="end" className="bg-white w-[250px]">
+                          {categoriesData.categories.map((category) => (
+                            <DropdownMenuItem key={category.id} asChild>
+                              <Link to={`/category/${category.id}`}>{category.name}</Link>
+                            </DropdownMenuItem>
+                          ))}
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>

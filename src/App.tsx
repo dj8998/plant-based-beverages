@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import CategoryPage from "./pages/CategoryPage";
 import SubcategoryPage from "./pages/SubcategoryPage";
-import ProductPage from "./pages/ProductPage"; // We'll create this
+import ProductPage from "./pages/ProductPage";
 import InquiryPage from "./pages/InquiryPage";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
@@ -16,6 +16,9 @@ import NotFound from "./pages/NotFound";
 import PostRequest from "./pages/PostRequest";
 import TalkToExpert from "./pages/TalkToExpert";
 import RequestCallback from "./pages/RequestCallback";
+import Blog from "./pages/Blog";
+import CatalogPage from "./pages/CatalogPage";
+import AllCategories from "./pages/AllCategories";
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -49,6 +52,9 @@ const App = () => (
           <Route path="/post-request" element={<PostRequest />} />
           <Route path="/talk-to-expert" element={<TalkToExpert />} />
           <Route path="/request-callback" element={<RequestCallback />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/categories" element={<AllCategories />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
