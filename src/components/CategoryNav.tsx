@@ -14,7 +14,7 @@ const CategoryNav: React.FC = () => {
     : categoriesData.categories;
 
   return (
-    <div className="bg-white border-b border-gray-200">
+    <div className="bg-white border-b border-gray-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-3 grid-rows-2 md:flex md:justify-between overflow-x-auto hide-scrollbar">
           {visibleCategories.map((category) => (
@@ -29,21 +29,21 @@ const CategoryNav: React.FC = () => {
               </div>
               
               {/* Dropdown menu for subcategories on hover */}
-              <div 
-                className={`absolute left-0 mt-0 w-64 bg-white border border-gray-200 rounded-b shadow-lg z-10 transition-all duration-200 ${
-                  hoveredCategory === category.id ? 'opacity-100 visible' : 'opacity-0 invisible'
-                }`}
-              >
-                {category.subcategories.map(subcategory => (
-                  <Link
-                    key={subcategory.id}
-                    to={`/category/${category.id}/${subcategory.id}`}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    {subcategory.name}
-                  </Link>
-                ))}
-              </div>
+              {hoveredCategory === category.id && (
+                <div 
+                  className="absolute left-0 mt-0 w-64 bg-white border border-gray-200 rounded-b shadow-lg z-50"
+                >
+                  {category.subcategories.map(subcategory => (
+                    <Link
+                      key={subcategory.id}
+                      to={`/category/${category.id}/${subcategory.id}`}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      {subcategory.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
