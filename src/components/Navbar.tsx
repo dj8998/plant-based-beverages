@@ -1,22 +1,16 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Search, ChevronDown } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -141,9 +135,8 @@ const Navbar = () => {
                 {showDropdown && (
                   <div 
                     ref={dropdownRef}
-                    className="absolute mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-80 overflow-y-auto"
+                    className="absolute mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-80 overflow-y-auto z-50"
                     style={{ 
-                      zIndex: 1000,
                       position: 'absolute',
                       top: '100%',
                       left: 0,
@@ -229,82 +222,99 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex md:hidden">
-            <Drawer>
-              <DrawerTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Menu />
-                </Button>
-              </DrawerTrigger>
-              <DrawerContent className="h-[80%]">
-                <div className="p-4">
-                  <div className="relative mb-6">
-                    <Input
-                      className="w-full"
-                      type="search"
-                      placeholder="Search for products or suppliers..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                      <Search className="h-4 w-4 text-gray-400" />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4">
+          {/* Mobile buttons - CHANGED FROM HAMBURGER MENU TO DIRECT BUTTONS */}
+          <div className="flex md:hidden space-x-2">
+            {/* Search input for mobile */}
+            <div className="relative mr-2">
+              <Input
+                className="w-full h-8 px-2"
+                type="search"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onFocus={() => searchQuery.length >= 2 && setShowDropdown(true)}
+              />
+              {showDropdown && (
+                <div 
+                  ref={dropdownRef}
+                  className="absolute mt-1 w-screen bg-white border border-gray-200 rounded-md shadow-lg max-h-80 overflow-y-auto z-50"
+                  style={{ 
+                    position: 'absolute',
+                    top: '100%',
+                    left: -10,
+                    right: 0,
+                    width: '300px',
+                  }}
+                >
+                  {/* ... same dropdown content as desktop */}
+                  {searchResults.length > 0 ? (
                     <div>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="outline" className="w-full flex justify-between items-center">
-                            Explore Suppliers
-                            <ChevronDown className="h-4 w-4 ml-2" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="bg-white w-[250px]">
-                          {categoriesData.categories.map((category) => (
-                            <DropdownMenuItem key={category.id} asChild>
-                              <Link to={`/category/${category.id}`}>{category.name}</Link>
-                            </DropdownMenuItem>
-                          ))}
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                      {searchResults.map((result, index) => (
+                        <Link
+                          key={index}
+                          to={result.type === 'subcategory' 
+                            ? `/category/${result.categoryId}/${result.subcategoryId}` 
+                            : `/product/${createSlug(result.name)}`}
+                          className="block px-4 py-2 text-sm hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
+                          onClick={() => setShowDropdown(false)}
+                        >
+                          <div className="flex items-start">
+                            <div>
+                              <div className="font-medium">{result.name}</div>
+                              <div className="text-xs text-gray-500">
+                                {result.type === 'subcategory' ? 'Category' : 'Product'} in {
+                                  categoriesData.categories.find(cat => cat.id === result.categoryId)?.name
+                                }
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
                     </div>
-                    
-                    <div>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="outline" className="w-full flex justify-between items-center">
-                            Resources
-                            <ChevronDown className="h-4 w-4 ml-2" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="bg-white w-[200px]">
-                          <DropdownMenuItem asChild>
-                            <Link to="/about-us">About Us</Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link to="/blog">Blog</Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link to="/contact">Contact Us</Link>
-                          </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
-                            <Link to="/request-callback">Schedule a Meeting</Link>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </div>
-                    
-                    <Link to="/post-request" className="block">
-                      <Button className="w-full bg-black text-white hover:bg-gray-800">
-                        Raise a Requirement
-                      </Button>
-                    </Link>
-                  </div>
+                  ) : (
+                    <div className="p-4 text-sm text-gray-500">No results found</div>
+                  )}
                 </div>
-              </DrawerContent>
-            </Drawer>
+              )}
+            </div>
+            
+            {/* Direct dropdown buttons for mobile */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="text-xs px-2">
+                  Explore
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-white w-[250px]">
+                {categoriesData.categories.map((category) => (
+                  <DropdownMenuItem key={category.id} asChild>
+                    <Link to={`/category/${category.id}`}>{category.name}</Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="text-xs px-2">
+                  Resources
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-white w-[200px]">
+                <DropdownMenuItem asChild>
+                  <Link to="/about-us">About Us</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/blog">Blog</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/contact">Contact Us</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/request-callback">Schedule a Meeting</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
