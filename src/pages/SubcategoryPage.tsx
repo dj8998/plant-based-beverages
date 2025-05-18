@@ -7,7 +7,10 @@ import Footer from '../components/Footer';
 import categoriesData from '../data/categories.json';
 import { Checkbox } from '@/components/ui/checkbox';
 import { supabase } from '@/integrations/supabase/client';
-import { updateManufacturerCategories } from '@/utils/categoryMapping';
+import { updateManufacturerCategories, assignManufacturersToGifting, getCategoryMappingStats } from '@/utils/categoryMapping';
+import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 // Type for manufacturer data
 type Manufacturer = {
@@ -21,16 +24,47 @@ type Manufacturer = {
   "Qualfirst Rating": number | null;
 };
 
+type MappingStats = {
+  totalManufacturers: number;
+  uncategorizedCount: number;
+  subcategoryCounts: Array<{ Subcategories: string; count: number }>;
+}
+
 const SubcategoryPage = () => {
   const { categoryId, subcategoryId } = useParams();
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [loading, setLoading] = useState(true);
   const [productTypes, setProductTypes] = useState<{id: string; label: string}[]>([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [mappingStats, setMappingStats] = useState<MappingStats | null>(null);
+  const [isMappingLoading, setIsMappingLoading] = useState(false);
   
   // Find the selected category and subcategory
   const category = categoriesData.categories.find(cat => cat.id === categoryId);
   const subcategory = category?.subcategories.find(subcat => subcat.id === subcategoryId);
+
+  // Check for admin mode
+  useEffect(() => {
+    const checkAdmin = () => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const isAdminMode = searchParams.get('admin') === 'true';
+      setIsAdmin(isAdminMode);
+      
+      if (isAdminMode) {
+        loadMappingStats();
+      }
+    };
+    
+    checkAdmin();
+  }, []);
+  
+  const loadMappingStats = async () => {
+    const stats = await getCategoryMappingStats();
+    if (stats) {
+      setMappingStats(stats);
+    }
+  };
 
   // Fetch manufacturers from Supabase
   useEffect(() => {
@@ -40,9 +74,6 @@ const SubcategoryPage = () => {
       setLoading(true);
       
       try {
-        // First, ensure that manufacturer category data is up to date
-        await updateManufacturerCategories();
-        
         // Then fetch manufacturers for this subcategory
         const { data, error } = await supabase
           .from('manufacturer_list')
@@ -51,6 +82,7 @@ const SubcategoryPage = () => {
         
         if (error) {
           console.error('Error fetching manufacturers:', error);
+          toast.error('Error loading manufacturers');
           setManufacturers([]);
         } else {
           setManufacturers(data as Manufacturer[]);
@@ -89,6 +121,46 @@ const SubcategoryPage = () => {
     ? manufacturers.filter(manufacturer => 
         selectedProducts.includes(manufacturer.product || ''))
     : manufacturers;
+    
+  const handleUpdateCategories = async () => {
+    setIsMappingLoading(true);
+    await updateManufacturerCategories();
+    
+    // Reload manufacturers
+    if (subcategory?.name) {
+      const { data } = await supabase
+        .from('manufacturer_list')
+        .select('*')
+        .eq('Subcategories', subcategory.name);
+        
+      if (data) {
+        setManufacturers(data as Manufacturer[]);
+      }
+    }
+    
+    await loadMappingStats();
+    setIsMappingLoading(false);
+  };
+  
+  const handleAssignGiftManufacturers = async () => {
+    setIsMappingLoading(true);
+    await assignManufacturersToGifting();
+    
+    // Reload manufacturers for this subcategory if we're on the gifting page
+    if (categoryId === 'festive-gifting' && subcategoryId === 'corporate-gifts') {
+      const { data } = await supabase
+        .from('manufacturer_list')
+        .select('*')
+        .eq('Subcategories', 'Corporate Gifts');
+        
+      if (data) {
+        setManufacturers(data as Manufacturer[]);
+      }
+    }
+    
+    await loadMappingStats();
+    setIsMappingLoading(false);
+  };
 
   if (!category || !subcategory) {
     return (
@@ -114,6 +186,68 @@ const SubcategoryPage = () => {
             {category.name} &gt; {subcategory.name}
           </p>
         </div>
+        
+        {isAdmin && (
+          <div className="mb-8 p-4 border rounded-lg bg-gray-50">
+            <h2 className="text-lg font-bold mb-4">Admin Controls</h2>
+            <div className="flex gap-4 mb-4">
+              <Button 
+                onClick={handleUpdateCategories} 
+                disabled={isMappingLoading}
+              >
+                Update All Categories
+              </Button>
+              <Button 
+                onClick={handleAssignGiftManufacturers}
+                disabled={isMappingLoading}
+                variant="secondary"
+              >
+                Assign Gift Manufacturers
+              </Button>
+            </div>
+            
+            {mappingStats && (
+              <div className="mt-4">
+                <h3 className="font-medium mb-2">Mapping Statistics</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                  <div className="bg-white p-3 rounded border">
+                    <p className="text-sm text-gray-600">Total Manufacturers</p>
+                    <p className="text-2xl font-bold">{mappingStats.totalManufacturers}</p>
+                  </div>
+                  <div className="bg-white p-3 rounded border">
+                    <p className="text-sm text-gray-600">Categorized</p>
+                    <p className="text-2xl font-bold">
+                      {mappingStats.totalManufacturers - mappingStats.uncategorizedCount}
+                    </p>
+                  </div>
+                  <div className="bg-white p-3 rounded border">
+                    <p className="text-sm text-gray-600">Uncategorized</p>
+                    <p className="text-2xl font-bold">{mappingStats.uncategorizedCount}</p>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded border">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Subcategory</TableHead>
+                        <TableHead className="text-right">Count</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {mappingStats.subcategoryCounts.map((item) => (
+                        <TableRow key={item.Subcategories}>
+                          <TableCell>{item.Subcategories}</TableCell>
+                          <TableCell className="text-right">{item.count}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
         
         <div className="flex flex-col md:flex-row gap-6">
           {/* Filter sidebar */}
@@ -153,9 +287,14 @@ const SubcategoryPage = () => {
             ) : filteredManufacturers.length === 0 ? (
               <div className="border rounded-lg p-8 bg-gray-50 text-center">
                 <h2 className="text-xl font-medium mb-2">No manufacturers available yet</h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 mb-4">
                   Manufacturer listings for this category will be available soon. Please check back later or contact us to inquire about specific products.
                 </p>
+                {isAdmin && categoryId === 'festive-gifting' && subcategoryId === 'corporate-gifts' && (
+                  <Button onClick={handleAssignGiftManufacturers} className="mt-2">
+                    Assign Gift Manufacturers Now
+                  </Button>
+                )}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
