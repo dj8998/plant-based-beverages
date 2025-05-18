@@ -60,7 +60,7 @@ const AllCategories = () => {
             We offer over 2,000 specialized product lines from verified Indian manufacturers.
           </p>
           
-          {/* Added search functionality */}
+          {/* Search functionality */}
           <div className="mb-8 max-w-xl mx-auto">
             <div className="relative">
               <Input

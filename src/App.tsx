@@ -19,6 +19,8 @@ import RequestCallback from "./pages/RequestCallback";
 import Blog from "./pages/Blog";
 import CatalogPage from "./pages/CatalogPage";
 import AllCategories from "./pages/AllCategories";
+import LoginPortal from "./pages/LoginPortal";
+import RaiseQuery from "./pages/RaiseQuery";
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -55,6 +57,8 @@ const App = () => (
           <Route path="/blog" element={<Blog />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/categories" element={<AllCategories />} />
+          <Route path="/login-portal" element={<LoginPortal />} />
+          <Route path="/raise-query" element={<RaiseQuery />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

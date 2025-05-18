@@ -18,10 +18,10 @@ const Footer = () => {
           <div>
             <h3 className="font-medium mb-4">For buyers</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/request" className="hover:text-gray-300">Post a Request</Link></li>
-              <li><Link to="/catalogues" className="hover:text-gray-300">Explore Catalogues</Link></li>
-              <li><Link to="/expert" className="hover:text-gray-300">Talk to an expert</Link></li>
-              <li><Link to="/callback" className="hover:text-gray-300">Request a call back</Link></li>
+              <li><Link to="/post-request" className="hover:text-gray-300">Post a Request</Link></li>
+              <li><Link to="/catalog" className="hover:text-gray-300">Explore Catalogues</Link></li>
+              <li><Link to="/talk-to-expert" className="hover:text-gray-300">Talk to an expert</Link></li>
+              <li><Link to="/request-callback" className="hover:text-gray-300">Request a call back</Link></li>
             </ul>
           </div>
           
@@ -29,16 +29,16 @@ const Footer = () => {
             <h3 className="font-medium mb-4">For suppliers</h3>
             <ul className="space-y-2 text-sm">
               <li><Link to="/login-portal" className="hover:text-gray-300">Login to Portal</Link></li>
-              <li><Link to="/query" className="hover:text-gray-300">Raise a query</Link></li>
-              <li><Link to="/callback" className="hover:text-gray-300">Request a call back</Link></li>
-              <li><Link to="/get-listed" className="hover:text-gray-300">Get Listed</Link></li>
+              <li><Link to="/raise-query" className="hover:text-gray-300">Raise a query</Link></li>
+              <li><Link to="/request-callback" className="hover:text-gray-300">Request a call back</Link></li>
+              <li><Link to="/request-callback" className="hover:text-gray-300">Get Listed</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-medium mb-4">About Us</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to="/mission" className="hover:text-gray-300">Our Mission</Link></li>
+              <li><Link to="/about-us" className="hover:text-gray-300">Our Mission</Link></li>
               <li><Link to="/contact" className="hover:text-gray-300">Contact</Link></li>
             </ul>
           </div>

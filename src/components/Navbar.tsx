@@ -222,61 +222,9 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile buttons - CHANGED FROM HAMBURGER MENU TO DIRECT BUTTONS */}
+          {/* Mobile buttons - REMOVED SEARCH BAR */}
           <div className="flex md:hidden space-x-2">
-            {/* Search input for mobile */}
-            <div className="relative mr-2">
-              <Input
-                className="w-full h-8 px-2"
-                type="search"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                onFocus={() => searchQuery.length >= 2 && setShowDropdown(true)}
-              />
-              {showDropdown && (
-                <div 
-                  ref={dropdownRef}
-                  className="absolute mt-1 w-screen bg-white border border-gray-200 rounded-md shadow-lg max-h-80 overflow-y-auto z-50"
-                  style={{ 
-                    position: 'absolute',
-                    top: '100%',
-                    left: -10,
-                    right: 0,
-                    width: '300px',
-                  }}
-                >
-                  {/* ... same dropdown content as desktop */}
-                  {searchResults.length > 0 ? (
-                    <div>
-                      {searchResults.map((result, index) => (
-                        <Link
-                          key={index}
-                          to={result.type === 'subcategory' 
-                            ? `/category/${result.categoryId}/${result.subcategoryId}` 
-                            : `/product/${createSlug(result.name)}`}
-                          className="block px-4 py-2 text-sm hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
-                          onClick={() => setShowDropdown(false)}
-                        >
-                          <div className="flex items-start">
-                            <div>
-                              <div className="font-medium">{result.name}</div>
-                              <div className="text-xs text-gray-500">
-                                {result.type === 'subcategory' ? 'Category' : 'Product'} in {
-                                  categoriesData.categories.find(cat => cat.id === result.categoryId)?.name
-                                }
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="p-4 text-sm text-gray-500">No results found</div>
-                  )}
-                </div>
-              )}
-            </div>
+            {/* Remove search input for mobile */}
             
             {/* Direct dropdown buttons for mobile */}
             <DropdownMenu>
