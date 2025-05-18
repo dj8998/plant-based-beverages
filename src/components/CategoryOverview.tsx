@@ -17,7 +17,14 @@ const CategoryOverview = () => {
           {categoriesData.categories.map((category) => (
             <div key={category.id} className="bg-white rounded-lg p-6 shadow-sm">
               <div className="flex items-center mb-4">
-                <div className="h-8 w-8 bg-gray-300 rounded-md mr-3"></div>
+                <div className="h-10 w-10 rounded-md mr-3 overflow-hidden">
+                  {/* Image placeholder that will be replaced later with actual images */}
+                  <img 
+                    src={`https://via.placeholder.com/40?text=${category.name.charAt(0)}`}
+                    alt={category.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
                 <h3 className="text-lg font-medium text-gray-900">{category.name}</h3>
               </div>
               <div className="space-y-2">
