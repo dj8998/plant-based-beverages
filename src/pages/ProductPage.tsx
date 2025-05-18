@@ -5,14 +5,18 @@ import Navbar from '../components/Navbar';
 import CategoryNav from '../components/CategoryNav';
 import Footer from '../components/Footer';
 import categoriesData from '../data/categories.json';
+import { supabase } from '@/integrations/supabase/client';
 
-// Type for future supplier data
-type Supplier = {
-  id: string;
-  name: string;
-  location: string;
-  rating: number;
-  productCategories: string[];
+// Type for manufacturer data
+type Manufacturer = {
+  company_name: string;
+  product: string;
+  "Top Category": string | null;
+  Subcategories: string | null;
+  address: string | null;
+  phone: string | null;
+  email: string | null;
+  "Qualfirst Rating": number | null;
 };
 
 const ProductPage = () => {
@@ -25,8 +29,7 @@ const ProductPage = () => {
     subcategoryName: string;
   } | null>(null);
   
-  // Placeholder for suppliers - in real app would come from Supabase
-  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+  const [manufacturers, setManufacturers] = useState<Manufacturer[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -57,34 +60,34 @@ const ProductPage = () => {
       if (found) break;
     }
 
-    // Simulate loading supplier data from Supabase
-    setTimeout(() => {
-      // This would be replaced by actual Supabase query 
-      setSuppliers([
-        {
-          id: 's1',
-          name: 'Quality Craft Exports',
-          location: 'Delhi, India',
-          rating: 4.8,
-          productCategories: ['HOME & LIVING', 'FURNITURE']
-        },
-        {
-          id: 's2',
-          name: 'Global Artisan Connect',
-          location: 'Jaipur, India',
-          rating: 4.5,
-          productCategories: ['HOME & LIVING', 'HANDICRAFTS']
-        },
-        {
-          id: 's3',
-          name: 'Eastern Crafts Supply',
-          location: 'Mumbai, India',
-          rating: 4.7,
-          productCategories: ['HOME & LIVING', 'DECOR']
+    // Fetch manufacturers from Supabase that match this product
+    const fetchManufacturers = async () => {
+      setLoading(true);
+      
+      try {
+        // Search for manufacturers with products containing the product name
+        const productName = normalizedSlug;
+        
+        const { data, error } = await supabase
+          .from('manufacturer_list')
+          .select('*')
+          .ilike('product', `%${productName}%`);
+        
+        if (error) {
+          console.error('Error fetching manufacturers:', error);
+          setManufacturers([]);
+        } else {
+          setManufacturers(data as Manufacturer[]);
         }
-      ]);
-      setLoading(false);
-    }, 1000);
+      } catch (err) {
+        console.error('Error:', err);
+        setManufacturers([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchManufacturers();
   }, [productSlug]);
 
   return (
@@ -105,7 +108,6 @@ const ProductPage = () => {
               <h2 className="text-xl font-semibold mb-4">About This Product</h2>
               <p className="text-gray-700">
                 This page displays information about {productInfo.name} and suppliers who offer this product.
-                In a complete implementation, detailed product information and specifications would be shown here.
               </p>
             </div>
 
@@ -117,45 +119,48 @@ const ProductPage = () => {
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
                   <p className="mt-4 text-gray-600">Loading suppliers...</p>
                 </div>
+              ) : manufacturers.length === 0 ? (
+                <div className="border rounded-lg p-8 bg-gray-50 text-center">
+                  <h2 className="text-xl font-medium mb-2">No suppliers found</h2>
+                  <p className="text-gray-600">
+                    We couldn't find any suppliers for this product yet. Please check back later or contact us for assistance.
+                  </p>
+                </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {suppliers.map(supplier => (
-                    <div key={supplier.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <h3 className="font-medium text-lg">{supplier.name}</h3>
-                      <p className="text-gray-600 text-sm mb-2">{supplier.location}</p>
-                      <div className="flex items-center mb-2">
-                        <div className="flex text-yellow-400">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <span key={i} className={i < Math.floor(supplier.rating) ? "text-yellow-400" : "text-gray-300"}>
-                              ★
-                            </span>
-                          ))}
+                  {manufacturers.map((manufacturer, index) => (
+                    <div key={index} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <h3 className="font-medium text-lg">{manufacturer.company_name}</h3>
+                      {manufacturer.address && (
+                        <p className="text-gray-600 text-sm mb-2">{manufacturer.address}</p>
+                      )}
+                      {manufacturer["Qualfirst Rating"] && (
+                        <div className="flex items-center mb-2">
+                          <div className="flex text-yellow-400">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                              <span key={i} className={i < Math.floor(manufacturer["Qualfirst Rating"] || 0) ? "text-yellow-400" : "text-gray-300"}>
+                                ★
+                              </span>
+                            ))}
+                          </div>
+                          <span className="ml-1 text-sm text-gray-600">{manufacturer["Qualfirst Rating"]}</span>
                         </div>
-                        <span className="ml-1 text-sm text-gray-600">{supplier.rating}</span>
-                      </div>
+                      )}
                       <div className="mt-2">
-                        <p className="text-sm text-gray-500">Categories:</p>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {supplier.productCategories.map((cat, idx) => (
-                            <span key={idx} className="text-xs bg-gray-100 px-2 py-1 rounded">
-                              {cat}
-                            </span>
-                          ))}
-                        </div>
+                        <p className="text-sm text-gray-500">Product: {manufacturer.product}</p>
+                        {manufacturer["Top Category"] && (
+                          <p className="text-sm text-gray-500">Category: {manufacturer["Top Category"]}</p>
+                        )}
                       </div>
                       <div className="mt-4">
-                        <a href={`/supplier/${supplier.id}`} className="text-blue-600 hover:underline text-sm">
-                          View supplier profile →
-                        </a>
+                        <button className="text-blue-600 hover:underline text-sm">
+                          Contact Supplier →
+                        </button>
                       </div>
                     </div>
                   ))}
                 </div>
               )}
-
-              <p className="mt-6 text-sm text-gray-500">
-                Note: In the production version, supplier data would be fetched from Supabase based on products they offer.
-              </p>
             </div>
           </div>
         ) : (

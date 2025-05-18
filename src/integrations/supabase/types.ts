@@ -9,7 +9,51 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      manufacturer_list: {
+        Row: {
+          address: string | null
+          company_name: string | null
+          contact: string | null
+          domestic_supply: string | null
+          email: string | null
+          fax: string | null
+          phone: string | null
+          product: string | null
+          "Qualfirst Rating": number | null
+          Subcategories: string | null
+          "Top Category": string | null
+          web: string | null
+        }
+        Insert: {
+          address?: string | null
+          company_name?: string | null
+          contact?: string | null
+          domestic_supply?: string | null
+          email?: string | null
+          fax?: string | null
+          phone?: string | null
+          product?: string | null
+          "Qualfirst Rating"?: number | null
+          Subcategories?: string | null
+          "Top Category"?: string | null
+          web?: string | null
+        }
+        Update: {
+          address?: string | null
+          company_name?: string | null
+          contact?: string | null
+          domestic_supply?: string | null
+          email?: string | null
+          fax?: string | null
+          phone?: string | null
+          product?: string | null
+          "Qualfirst Rating"?: number | null
+          Subcategories?: string | null
+          "Top Category"?: string | null
+          web?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
