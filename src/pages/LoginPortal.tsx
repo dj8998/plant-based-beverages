@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import CategoryNav from '../components/CategoryNav';
 import Footer from '../components/Footer';
