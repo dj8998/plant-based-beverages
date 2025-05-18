@@ -1,6 +1,7 @@
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';  // Added this import
 import Navbar from '../components/Navbar';
 import CategoryNav from '../components/CategoryNav';
 import Footer from '../components/Footer';
