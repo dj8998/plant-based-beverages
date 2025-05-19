@@ -72,10 +72,13 @@ const Navbar = () => {
           });
         }
         
-        // Match products
+        // Match products with improved matching
         if (subcategory.products) {
           subcategory.products.forEach(product => {
-            if (product.toLowerCase().includes(lowerCaseQuery)) {
+            const productLower = product.toLowerCase();
+            // Check for exact match or if query is part of the product name
+            if (productLower.includes(lowerCaseQuery) || 
+                lowerCaseQuery.split(' ').every(word => productLower.includes(word))) {
               results.push({
                 type: 'product',
                 name: product,
@@ -89,8 +92,17 @@ const Navbar = () => {
       });
     });
     
-    setSearchResults(results.slice(0, 10)); // Limit to 10 results
-    setShowDropdown(results.length > 0);
+    // Sort results to prioritize exact matches
+    const sortedResults = results.sort((a, b) => {
+      const aExactMatch = a.name.toLowerCase() === lowerCaseQuery;
+      const bExactMatch = b.name.toLowerCase() === lowerCaseQuery;
+      if (aExactMatch && !bExactMatch) return -1;
+      if (!aExactMatch && bExactMatch) return 1;
+      return 0;
+    });
+    
+    setSearchResults(sortedResults.slice(0, 10)); // Limit to 10 results
+    setShowDropdown(sortedResults.length > 0);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,13 +165,23 @@ const Navbar = () => {
                             onClick={() => setShowDropdown(false)}
                           >
                             <div className="flex items-start">
-                              <div>
-                                <div className="font-medium">{result.name}</div>
-                                <div className="text-xs text-gray-500">
+                              <div className="flex-1">
+                                <div className="font-medium flex items-center">
+                                  {result.type === 'product' ? (
+                                    <span className="text-blue-600 mr-2">🔍</span>
+                                  ) : (
+                                    <span className="text-gray-600 mr-2">📁</span>
+                                  )}
+                                  {result.name}
+                                </div>
+                                <div className="text-xs text-gray-500 mt-1">
                                   {result.type === 'subcategory' ? 'Category' : 'Product'} in {
                                     categoriesData.categories.find(cat => cat.id === result.categoryId)?.name
                                   }
                                 </div>
+                              </div>
+                              <div className="text-xs text-gray-400">
+                                {result.type === 'product' ? 'View Product' : 'Browse Category'}
                               </div>
                             </div>
                           </Link>
