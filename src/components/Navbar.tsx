@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ChevronDown } from 'lucide-react';
@@ -181,7 +180,7 @@ const Navbar = () => {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Explore Suppliers</NavigationMenuTrigger>
-                    <NavigationMenuContent className="bg-white">
+                    <NavigationMenuContent className="bg-white z-[200]">
                       <div className="p-4 w-[250px]">
                         {categoriesData.categories.map((category) => (
                           <Link 
@@ -202,7 +201,7 @@ const Navbar = () => {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
-                    <NavigationMenuContent className="bg-white">
+                    <NavigationMenuContent className="bg-white z-[200]">
                       <div className="p-4 w-[200px]">
                         <Link to="/about-us" className="block py-2 hover:text-blue-600">About Us</Link>
                         <Link to="/blog" className="block py-2 hover:text-blue-600">Blog</Link>

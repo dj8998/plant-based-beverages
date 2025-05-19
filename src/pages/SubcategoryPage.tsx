@@ -1,4 +1,3 @@
-
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
@@ -11,6 +10,7 @@ import { updateManufacturerCategories, assignManufacturersToGifting, getCategory
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Type for manufacturer data
 type Manufacturer = {
@@ -30,6 +30,44 @@ type MappingStats = {
   subcategoryCounts: Array<{ Subcategories: string; count: number }>;
 }
 
+// Add a simple modal for contacting supplier
+function ContactSupplierModal({ open, onClose, supplierName, onSubmit }: { open: boolean, onClose: () => void, supplierName: string, onSubmit: (email: string, message: string) => void }) {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    await onSubmit(email, message);
+    setSubmitting(false);
+    setEmail('');
+    setMessage('');
+    onClose();
+  };
+
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-[300] bg-black bg-opacity-40 flex items-center justify-center">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative">
+        <button onClick={onClose} className="absolute top-2 right-2 text-gray-400 hover:text-gray-600">✕</button>
+        <h2 className="text-xl font-bold mb-2">Contact {supplierName}</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium mb-1">Your Email</label>
+            <input type="email" required className="w-full border rounded px-3 py-2" value={email} onChange={e => setEmail(e.target.value)} placeholder="you@example.com" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Message</label>
+            <textarea required className="w-full border rounded px-3 py-2" rows={4} value={message} onChange={e => setMessage(e.target.value)} placeholder="Type your message..." />
+          </div>
+          <button type="submit" disabled={submitting} className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 disabled:opacity-50">{submitting ? 'Sending...' : 'Send Message'}</button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 const SubcategoryPage = () => {
   const { categoryId, subcategoryId } = useParams();
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -39,6 +77,10 @@ const SubcategoryPage = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [mappingStats, setMappingStats] = useState<MappingStats | null>(null);
   const [isMappingLoading, setIsMappingLoading] = useState(false);
+  const isMobile = useIsMobile();
+  const [isProductFilterOpen, setIsProductFilterOpen] = useState(() => !isMobile);
+  const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [contactSupplier, setContactSupplier] = useState<string | null>(null);
   
   // Find the selected category and subcategory
   const category = categoriesData.categories.find(cat => cat.id === categoryId);
@@ -87,14 +129,17 @@ const SubcategoryPage = () => {
         } else {
           setManufacturers(data as Manufacturer[]);
           
-          // Get unique product types from the results
-          const uniqueProducts = [...new Set(data.map((item: Manufacturer) => item.product || ''))];
-          const formattedProductTypes = uniqueProducts
+          // Get unique product types from the results and split comma-separated values
+          const allProducts = data
+            .map((item: Manufacturer) => item.product || '')
             .filter(product => product) // Filter out empty products
-            .map(product => ({
-              id: product,
-              label: product.charAt(0).toUpperCase() + product.slice(1).toLowerCase()
-            }));
+            .flatMap(product => product.split(',').map(p => p.trim())) // Split by comma and trim
+            .filter((value, index, self) => self.indexOf(value) === index); // Remove duplicates
+
+          const formattedProductTypes = allProducts.map(product => ({
+            id: product,
+            label: product.charAt(0).toUpperCase() + product.slice(1).toLowerCase()
+          }));
           
           setProductTypes(formattedProductTypes);
         }
@@ -108,6 +153,10 @@ const SubcategoryPage = () => {
     fetchManufacturers();
   }, [categoryId, subcategoryId, subcategory?.name]);
 
+  useEffect(() => {
+    setIsProductFilterOpen(!isMobile);
+  }, [isMobile]);
+
   const handleProductFilterChange = (productId: string) => {
     setSelectedProducts(prev => 
       prev.includes(productId) 
@@ -118,8 +167,13 @@ const SubcategoryPage = () => {
   
   // Filter manufacturers based on selected product types
   const filteredManufacturers = selectedProducts.length > 0 
-    ? manufacturers.filter(manufacturer => 
-        selectedProducts.includes(manufacturer.product || ''))
+    ? manufacturers.filter(manufacturer => {
+        if (!manufacturer.product) return false;
+        const manufacturerProducts = manufacturer.product.split(',').map(p => p.trim());
+        return selectedProducts.some(selected => 
+          manufacturerProducts.some(product => product === selected)
+        );
+      })
     : manufacturers;
     
   const handleUpdateCategories = async () => {
@@ -160,6 +214,29 @@ const SubcategoryPage = () => {
     
     await loadMappingStats();
     setIsMappingLoading(false);
+  };
+
+  const handleContactSupplier = (supplierName: string) => {
+    setContactSupplier(supplierName);
+    setContactModalOpen(true);
+  };
+
+  const handleContactSubmit = async (email: string, message: string) => {
+    if (!contactSupplier) return;
+    try {
+      const { error } = await supabase.from('supplier_contacts').insert([
+        {
+          supplier_name: contactSupplier,
+          user_email: email,
+          message,
+          created_at: new Date().toISOString(),
+        }
+      ]);
+      if (error) throw error;
+      toast.success('Your message has been sent!');
+    } catch (err) {
+      toast.error('Failed to send your message. Please try again.');
+    }
   };
 
   if (!category || !subcategory) {
@@ -253,27 +330,41 @@ const SubcategoryPage = () => {
           {/* Filter sidebar */}
           <div className="w-full md:w-64 flex-shrink-0">
             <div className="border rounded-lg p-4 sticky top-4">
-              <h2 className="font-medium text-lg mb-4">Filter by Products</h2>
-              {productTypes.length > 0 ? (
-                <div className="space-y-2">
-                  {productTypes.map((product) => (
-                    <div key={product.id} className="flex items-center space-x-2">
-                      <Checkbox 
-                        id={`product-${product.id}`} 
-                        checked={selectedProducts.includes(product.id)}
-                        onCheckedChange={() => handleProductFilterChange(product.id)}
-                      />
-                      <label 
-                        htmlFor={`product-${product.id}`}
-                        className="text-sm cursor-pointer"
-                      >
-                        {product.label}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-sm text-gray-500">No product filters available</p>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="font-medium text-lg">Filter by Products</h2>
+                {isMobile && (
+                  <button
+                    className="text-sm text-blue-600 underline focus:outline-none"
+                    onClick={() => setIsProductFilterOpen((open) => !open)}
+                    aria-expanded={isProductFilterOpen}
+                    aria-controls="product-filter-list"
+                  >
+                    {isProductFilterOpen ? 'Hide' : 'Show'}
+                  </button>
+                )}
+              </div>
+              {isProductFilterOpen && (
+                productTypes.length > 0 ? (
+                  <div id="product-filter-list" className="space-y-2">
+                    {productTypes.map((product) => (
+                      <div key={product.id} className="flex items-center space-x-2">
+                        <Checkbox 
+                          id={`product-${product.id}`} 
+                          checked={selectedProducts.includes(product.id)}
+                          onCheckedChange={() => handleProductFilterChange(product.id)}
+                        />
+                        <label 
+                          htmlFor={`product-${product.id}`}
+                          className="text-sm cursor-pointer"
+                        >
+                          {product.label}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-500">No product filters available</p>
+                )
               )}
             </div>
           </div>
@@ -298,36 +389,75 @@ const SubcategoryPage = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredManufacturers.map((manufacturer, index) => (
-                  <div key={index} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                    <h3 className="font-medium">{manufacturer.company_name}</h3>
-                    <p className="text-sm text-gray-500 mt-1">Product: {manufacturer.product}</p>
-                    {manufacturer.address && (
-                      <p className="text-sm text-gray-500 mt-1">Location: {manufacturer.address}</p>
-                    )}
-                    {manufacturer["Qualfirst Rating"] && (
-                      <div className="flex items-center mt-1">
-                        <div className="flex text-yellow-400">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <span key={i} className={i < Math.floor(manufacturer["Qualfirst Rating"] || 0) ? "text-yellow-400" : "text-gray-300"}>
-                              ★
-                            </span>
-                          ))}
+                {filteredManufacturers.map((manufacturer, index) => {
+                  const isVerified = (manufacturer as any).verified_flag;
+                  let websiteUrl = (manufacturer as any).web;
+                  if (websiteUrl && !/^https?:\/\//i.test(websiteUrl)) {
+                    websiteUrl = 'https://' + websiteUrl;
+                  }
+                  const topCategory = manufacturer["Top Category"] || '';
+                  const products = (manufacturer.product || '').split(',').map(p => p.trim().toLowerCase()).filter(Boolean);
+                  const rating10 = manufacturer["Qualfirst Rating"] || 0;
+                  const rating5 = Math.round((rating10 / 2) * 10) / 10; // one decimal
+                  const fullStars = Math.floor(rating5);
+                  const halfStar = rating5 - fullStars >= 0.5;
+                  return (
+                    <div key={index} className="relative border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full">
+                      {/* Verified badge */}
+                      {isVerified && (
+                        <div
+                          className="absolute -top-3 -left-3 bg-white border border-black rounded px-2 py-1 flex items-center justify-center font-bold text-black text-sm shadow z-10 cursor-pointer"
+                          title="QF Verified"
+                          style={{ minWidth: '32px', minHeight: '32px' }}
+                        >
+                          V
                         </div>
-                        <span className="ml-1 text-xs text-gray-600">{manufacturer["Qualfirst Rating"]}</span>
+                      )}
+                      {/* Supplier name */}
+                      <h3 className="text-2xl font-bold mb-2 text-center mt-2">{manufacturer.company_name}</h3>
+                      {/* Rating */}
+                      <div className="flex items-center justify-center mb-2 group cursor-pointer" title="QF Rating">
+                        <span className="text-xl font-semibold mr-1">{rating5.toFixed(1)}</span>
+                        <div className="flex">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <span key={i} className={i < fullStars ? 'text-yellow-400' : 'text-gray-300'}>★</span>
+                          ))}
+                          {halfStar && <span className="text-yellow-400">★</span>}
+                        </div>
                       </div>
-                    )}
-                    <button className="mt-3 text-blue-500 hover:underline text-sm">
-                      Contact Manufacturer
-                    </button>
-                  </div>
-                ))}
+                      {/* Verified line */}
+                      <div className="text-center text-gray-700 mb-4">Verified Manufacturer of {topCategory}</div>
+                      {/* Products */}
+                      <div className="mb-4 text-sm text-gray-600">
+                        <span className="font-semibold">Products:</span> {products.join(', ')}
+                      </div>
+                      {/* Action buttons */}
+                      <div className="mt-auto flex flex-col gap-2">
+                        {websiteUrl && (
+                          <a href={websiteUrl} target="_blank" rel="noopener noreferrer" className="w-full bg-gray-100 text-black py-2 rounded hover:bg-gray-200 text-center font-medium">Visit Website</a>
+                        )}
+                        <button
+                          className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 font-medium"
+                          onClick={() => handleContactSupplier(manufacturer.company_name)}
+                        >
+                          Contact Supplier
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
         </div>
       </main>
       <Footer />
+      <ContactSupplierModal
+        open={contactModalOpen}
+        onClose={() => setContactModalOpen(false)}
+        supplierName={contactSupplier || ''}
+        onSubmit={handleContactSubmit}
+      />
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 import Navbar from '../components/Navbar';
 import CategoryNav from '../components/CategoryNav';
 import Hero from '../components/Hero';

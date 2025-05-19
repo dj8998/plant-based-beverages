@@ -1,6 +1,6 @@
-
 import { Link } from 'react-router-dom';
 import categoriesData from '../data/categories.json';
+import { images } from '@/config/images';
 
 const CategoryOverview = () => {
   return (
@@ -18,9 +18,8 @@ const CategoryOverview = () => {
             <div key={category.id} className="bg-white rounded-lg p-6 shadow-sm">
               <div className="flex items-center mb-4">
                 <div className="h-10 w-10 rounded-md mr-3 overflow-hidden">
-                  {/* Image placeholder that will be replaced later with actual images */}
                   <img 
-                    src={`https://via.placeholder.com/40?text=${category.name.charAt(0)}`}
+                    src={images.categoryIcons[category.id as keyof typeof images.categoryIcons] || images.ui.placeholder}
                     alt={category.name}
                     className="h-full w-full object-cover"
                   />

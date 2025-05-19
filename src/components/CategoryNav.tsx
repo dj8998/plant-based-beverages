@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import categoriesData from '../data/categories.json';
@@ -17,9 +16,9 @@ const CategoryNav: React.FC = () => {
   const visibleCategories = categoriesData.categories.slice(0, 5);
 
   return (
-    <div className="bg-white border-b border-gray-200 hidden md:block">
+    <div className="bg-white border-b border-gray-200 hidden md:block relative z-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between overflow-x-auto hide-scrollbar">
+        <div className="flex justify-between">
           {visibleCategories.map((category) => (
             <div 
               key={category.id}
@@ -31,17 +30,25 @@ const CategoryNav: React.FC = () => {
                 {category.name}
               </div>
               
-              {/* Fixed position dropdown menu with improved z-index */}
+              {/* Dropdown menu with improved z-index and positioning */}
               {hoveredCategory === category.id && (
                 <div 
-                  className="absolute left-0 mt-0 w-64 bg-white border border-gray-200 rounded-b shadow-lg z-50"
+                  className="absolute left-0 w-64 bg-white border border-gray-200 rounded-b shadow-lg z-[150]"
+                  style={{ 
+                    top: '100%',
+                    maxHeight: 'calc(100vh - 200px)',
+                    overflowY: 'auto'
+                  }}
+                  onMouseEnter={() => setHoveredCategory(category.id)}
+                  onMouseLeave={() => setHoveredCategory(null)}
                 >
-                  <div className="max-h-96 overflow-y-auto">
+                  <div className="py-2">
                     {category.subcategories.map(subcategory => (
                       <Link
                         key={subcategory.id}
                         to={`/category/${category.id}/${subcategory.id}`}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setHoveredCategory(null)}
                       >
                         {subcategory.name}
                       </Link>

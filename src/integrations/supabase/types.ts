@@ -6,53 +6,209 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export type Database = {
+export interface Database {
   public: {
     Tables: {
       manufacturer_list: {
         Row: {
-          address: string | null
-          company_name: string | null
-          contact: string | null
-          domestic_supply: string | null
-          email: string | null
-          fax: string | null
-          phone: string | null
-          product: string | null
-          "Qualfirst Rating": number | null
-          Subcategories: string | null
-          "Top Category": string | null
-          web: string | null
+          address: string
+          company_name: string
+          contact: string
+          domestic_supply: string
+          email: string
+          fax: string
+          phone: string
+          product: string
+          "Qualfirst Rating": number
+          Subcategories: string
+          "Top Category": string
+          web: string
         }
         Insert: {
-          address?: string | null
-          company_name?: string | null
-          contact?: string | null
-          domestic_supply?: string | null
-          email?: string | null
-          fax?: string | null
-          phone?: string | null
-          product?: string | null
-          "Qualfirst Rating"?: number | null
-          Subcategories?: string | null
-          "Top Category"?: string | null
-          web?: string | null
+          address?: string
+          company_name: string
+          contact?: string
+          domestic_supply?: string
+          email?: string
+          fax?: string
+          phone?: string
+          product: string
+          "Qualfirst Rating"?: number
+          Subcategories?: string
+          "Top Category"?: string
+          web?: string
         }
         Update: {
-          address?: string | null
-          company_name?: string | null
-          contact?: string | null
-          domestic_supply?: string | null
-          email?: string | null
-          fax?: string | null
-          phone?: string | null
-          product?: string | null
-          "Qualfirst Rating"?: number | null
-          Subcategories?: string | null
-          "Top Category"?: string | null
-          web?: string | null
+          address?: string
+          company_name?: string
+          contact?: string
+          domestic_supply?: string
+          email?: string
+          fax?: string
+          phone?: string
+          product?: string
+          "Qualfirst Rating"?: number
+          Subcategories?: string
+          "Top Category"?: string
+          web?: string
         }
-        Relationships: []
+      }
+      contact_submissions: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          company: string | null
+          message: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          company?: string | null
+          message: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          company?: string | null
+          message?: string
+          created_at?: string
+        }
+      }
+      query_submissions: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          company: string
+          phone: string
+          query_type: string
+          message: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          company: string
+          phone: string
+          query_type: string
+          message: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          company?: string
+          phone?: string
+          query_type?: string
+          message?: string
+          created_at?: string
+        }
+      }
+      product_requests: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          company: string | null
+          phone: string
+          category: string
+          quantity: string
+          description: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          company?: string | null
+          phone: string
+          category: string
+          quantity: string
+          description: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          company?: string | null
+          phone?: string
+          category?: string
+          quantity?: string
+          description?: string
+          created_at?: string
+        }
+      }
+      expert_consultations: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          phone: string
+          business_type: string
+          requirements: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          phone: string
+          business_type: string
+          requirements: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          phone?: string
+          business_type?: string
+          requirements?: string
+          created_at?: string
+        }
+      }
+      inquiries: {
+        Row: {
+          id: string
+          requirement: string
+          product_types: string[]
+          company_name: string
+          email: string
+          country: string
+          role: string
+          importing_from_india: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          requirement: string
+          product_types: string[]
+          company_name: string
+          email: string
+          country: string
+          role: string
+          importing_from_india: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          requirement?: string
+          product_types?: string[]
+          company_name?: string
+          email?: string
+          country?: string
+          role?: string
+          importing_from_india?: boolean
+          created_at?: string
+        }
       }
     }
     Views: {
@@ -62,9 +218,6 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
       [_ in never]: never
     }
   }

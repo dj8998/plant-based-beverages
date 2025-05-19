@@ -1,3 +1,4 @@
+import { images } from "@/config/images";
 
 const Testimonials = () => {
   return (
@@ -11,7 +12,7 @@ const Testimonials = () => {
         </div>
         <div className="relative">
           <img 
-            src="/placeholder.svg" 
+            src={images.testimonials.user1}
             alt="Business review platform" 
             className="w-full h-64 object-cover rounded-md shadow-md"
           />

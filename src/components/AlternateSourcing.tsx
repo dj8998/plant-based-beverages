@@ -1,3 +1,4 @@
+import { images } from "@/config/images";
 
 const AlternateSourcing = () => {
   return (
@@ -5,7 +6,7 @@ const AlternateSourcing = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="relative">
           <img 
-            src="/placeholder.svg" 
+            src={images.about.mission}
             alt="Sourcing illustration" 
             className="w-full h-64 object-cover rounded-md shadow-md"
           />

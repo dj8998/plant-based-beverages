@@ -1,62 +1,65 @@
-
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import Navbar from '../components/Navbar';
 import CategoryNav from '../components/CategoryNav';
 import Footer from '../components/Footer';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  company: z.string().min(2, { message: "Company name is required" }),
-  phone: z.string().min(10, { message: "Please enter a valid phone number" }),
-  queryType: z.string({ required_error: "Please select a query type" }),
-  message: z.string().min(10, { message: "Please provide details about your query" }),
-});
-
-const RaiseQuery = () => {
+export default function RaiseQuery() {
   const { toast } = useToast();
-  
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      company: "",
-      phone: "",
-      queryType: "",
-      message: "",
-    },
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    query_type: "",
+    message: "",
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-    toast({
-      title: "Query Submitted!",
-      description: "Our team will respond to your query within 24 hours.",
-    });
-    form.reset();
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from("query_submissions")
+        .insert([formData]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success!",
+        description: "Your query has been submitted. We'll get back to you soon.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        query_type: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error submitting query:", error);
+      toast({
+        title: "Error",
+        description: "Failed to submit query. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -64,131 +67,127 @@ const RaiseQuery = () => {
       <Navbar />
       <CategoryNav />
       <main className="flex-grow">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <h1 className="text-3xl font-bold mb-2 text-center">Raise a Query</h1>
-            <p className="text-center text-gray-600 mb-8">
-              Our team will respond to your concerns promptly
-            </p>
-            
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Full Name*</FormLabel>
-                        <FormControl>
-                          <Input placeholder="John Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email Address*</FormLabel>
-                        <FormControl>
-                          <Input placeholder="you@example.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="company"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Company Name*</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Your Company Ltd." {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone Number*</FormLabel>
-                        <FormControl>
-                          <Input placeholder="+1 123 456 7890" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                
-                <FormField
-                  control={form.control}
-                  name="queryType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Query Type*</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a query type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="account">Account Issues</SelectItem>
-                          <SelectItem value="payment">Payment Problems</SelectItem>
-                          <SelectItem value="listing">Product Listing Issues</SelectItem>
-                          <SelectItem value="technical">Technical Support</SelectItem>
-                          <SelectItem value="other">Other</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-3xl font-bold mb-8">Raise a Query</h1>
+          <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-1">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  placeholder="John Doe"
+                  className="w-full px-3 py-2 border rounded-md"
                 />
-                
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Query Details*</FormLabel>
-                      <FormControl>
-                        <Textarea 
-                          placeholder="Please provide details about your query or issue so we can assist you better." 
-                          className="min-h-[120px]"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+              </div>
 
-                <Button type="submit" className="w-full bg-black text-white hover:bg-gray-800">
-                  Submit Query
-                </Button>
-                
-                <p className="text-center text-sm text-gray-500">
-                  For urgent matters, please contact us directly at support@qualfirst.com
-                </p>
-              </form>
-            </Form>
-          </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-1">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="you@example.com"
+                  className="w-full px-3 py-2 border rounded-md"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium mb-1">
+                  Company Name *
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  required
+                  placeholder="Your Company Ltd."
+                  className="w-full px-3 py-2 border rounded-md"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium mb-1">
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="+1 123 456 7890"
+                  className="w-full px-3 py-2 border rounded-md"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="query_type" className="block text-sm font-medium mb-1">
+                Query Type *
+              </label>
+              <select
+                id="query_type"
+                name="query_type"
+                value={formData.query_type}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-md"
+              >
+                <option value="">Select a query type</option>
+                <option value="product">Product Information</option>
+                <option value="pricing">Pricing</option>
+                <option value="shipping">Shipping & Delivery</option>
+                <option value="quality">Quality Control</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-1">
+                Query Details *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={5}
+                placeholder="Please provide details about your query or issue so we can assist you better."
+                className="w-full px-3 py-2 border rounded-md"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 disabled:opacity-50"
+            >
+              {isSubmitting ? "Submitting..." : "Submit Query"}
+            </button>
+
+            <p className="text-center text-sm text-gray-500">
+              For urgent matters, please contact us directly at support@qualfirst.com
+            </p>
+          </form>
         </div>
       </main>
       <Footer />
     </div>
   );
-};
-
-export default RaiseQuery;
+}

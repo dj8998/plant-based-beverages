@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import MultiStepInquiry from "./MultiStepInquiry";
+import { images } from "@/config/images";
 
 const Hero = () => {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
@@ -28,7 +28,7 @@ const Hero = () => {
           </div>
           <div className="relative">
             <img 
-              src="/placeholder.svg" 
+              src={images.hero.main}
               alt="Factory production floor" 
               className="w-full h-[400px] object-cover rounded-md shadow-md"
             />

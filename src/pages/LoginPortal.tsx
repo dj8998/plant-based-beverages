@@ -39,7 +39,7 @@ const LoginPortal = () => {
     console.log(values);
     toast({
       title: "Login Attempted",
-      description: "This is a dummy login page. Functionality will be implemented later.",
+      description: "Invalid Username or Password.",
     });
   };
 

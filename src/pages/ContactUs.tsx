@@ -1,5 +1,5 @@
-
 import { useState } from 'react';
+import { useToast } from "@/components/ui/use-toast";
 import Navbar from '../components/Navbar';
 import CategoryNav from '../components/CategoryNav';
 import Footer from '../components/Footer';
@@ -7,8 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const ContactUs = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,15 +21,39 @@ const ContactUs = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Here you would typically send the data to your backend
-    alert('Thank you for your message. We will get back to you soon!');
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
+
+      if (error) throw error;
+
+      toast({
+        title: "Success!",
+        description: "Your message has been sent. We'll get back to you soon.",
+      });
+      
+      setFormData({ name: '', email: '', company: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -99,14 +126,18 @@ const ContactUs = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Let us know how we can help..."
-                      className="min-h-32"
+                      placeholder="How can we help you?"
+                      className="min-h-[120px]"
                       required
                     />
                   </div>
                   
-                  <Button type="submit" className="bg-black text-white hover:bg-gray-800 w-full">
-                    Send Message
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-black text-white hover:bg-gray-800"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </div>
               </form>
@@ -123,8 +154,8 @@ const ContactUs = () => {
                     <div>
                       <p className="font-medium">Main Office</p>
                       <p className="text-gray-600">
-                        123 Business Park, Sector 5<br />
-                        Noida, Uttar Pradesh 201301<br />
+                        Navneet Building Santacruz (W)<br />
+                        Mumbai, Maharastra 400054<br />
                         India
                       </p>
                     </div>
@@ -134,7 +165,7 @@ const ContactUs = () => {
                     <Phone className="h-5 w-5 text-gray-400 mr-3" />
                     <div>
                       <p className="font-medium">Phone</p>
-                      <p className="text-gray-600">+91 98765 43210</p>
+                      <p className="text-gray-600">+91 96608 10447</p>
                     </div>
                   </div>
                   
@@ -142,7 +173,7 @@ const ContactUs = () => {
                     <Mail className="h-5 w-5 text-gray-400 mr-3" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p className="text-gray-600">info@qualfirst.com</p>
+                      <p className="text-gray-600">dinesh@qualfirst.co.in</p>
                     </div>
                   </div>
                   
@@ -157,9 +188,9 @@ const ContactUs = () => {
               </div>
               
               <div className="bg-white rounded-lg shadow-sm p-8">
-                <h2 className="text-xl font-semibold mb-4">Regional Offices</h2>
+                {/* <h2 className="text-xl font-semibold mb-4">Regional Offices</h2> */}
                 
-                <div className="space-y-6">
+                {/* <div className="space-y-6">
                   <div>
                     <p className="font-medium">Mumbai</p>
                     <p className="text-gray-600">
@@ -183,7 +214,7 @@ const ContactUs = () => {
                       Bangalore, Karnataka 560066
                     </p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
