@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-12 overflow-visible">
           <div className="flex flex-col justify-center">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
               FIND THE PERFECT <br /> MANUFACTURING <br /> PARTNER
@@ -26,7 +26,7 @@ const Hero = () => {
               </Button>
             </div>
           </div>
-          <div className="relative">
+          <div className="z-0">
             <img 
               src={images.hero.main}
               alt="Factory production floor" 

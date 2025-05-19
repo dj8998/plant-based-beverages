@@ -400,7 +400,7 @@ const SubcategoryPage = () => {
                   const rating10 = manufacturer["Qualfirst Rating"] || 0;
                   const rating5 = Math.round((rating10 / 2) * 10) / 10; // one decimal
                   const fullStars = Math.floor(rating5);
-                  const halfStar = rating5 - fullStars >= 0.5;
+                  const partialStar = rating5 - fullStars;
                   return (
                     <div key={index} className="relative border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full">
                       {/* Verified badge */}
@@ -419,10 +419,25 @@ const SubcategoryPage = () => {
                       <div className="flex items-center justify-center mb-2 group cursor-pointer" title="QF Rating">
                         <span className="text-xl font-semibold mr-1">{rating5.toFixed(1)}</span>
                         <div className="flex">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <span key={i} className={i < fullStars ? 'text-yellow-400' : 'text-gray-300'}>★</span>
-                          ))}
-                          {halfStar && <span className="text-yellow-400">★</span>}
+                          {Array.from({ length: 5 }).map((_, i) => {
+                            if (i < fullStars) {
+                              return <span key={i} className="text-yellow-400">★</span>;
+                            } else if (i === fullStars && partialStar > 0) {
+                              return (
+                                <span key={i} className="relative">
+                                  <span className="text-gray-300">★</span>
+                                  <span 
+                                    className="absolute top-0 left-0 text-yellow-400 overflow-hidden" 
+                                    style={{ width: `${partialStar * 100}%` }}
+                                  >
+                                    ★
+                                  </span>
+                                </span>
+                              );
+                            } else {
+                              return <span key={i} className="text-gray-300">★</span>;
+                            }
+                          })}
                         </div>
                       </div>
                       {/* Verified line */}

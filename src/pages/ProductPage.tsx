@@ -1,4 +1,3 @@
-
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
@@ -137,11 +136,32 @@ const ProductPage = () => {
                       {manufacturer["Qualfirst Rating"] && (
                         <div className="flex items-center mb-2">
                           <div className="flex text-yellow-400">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <span key={i} className={i < Math.floor(manufacturer["Qualfirst Rating"] || 0) ? "text-yellow-400" : "text-gray-300"}>
-                                ★
-                              </span>
-                            ))}
+                            {(() => {
+                              const rating10 = manufacturer["Qualfirst Rating"] || 0;
+                              const rating5 = Math.round((rating10 / 2) * 10) / 10;
+                              const fullStars = Math.floor(rating5);
+                              const partialStar = rating5 - fullStars;
+                              
+                              return Array.from({ length: 5 }).map((_, i) => {
+                                if (i < fullStars) {
+                                  return <span key={i} className="text-yellow-400">★</span>;
+                                } else if (i === fullStars && partialStar > 0) {
+                                  return (
+                                    <span key={i} className="relative">
+                                      <span className="text-gray-300">★</span>
+                                      <span 
+                                        className="absolute top-0 left-0 text-yellow-400 overflow-hidden" 
+                                        style={{ width: `${partialStar * 100}%` }}
+                                      >
+                                        ★
+                                      </span>
+                                    </span>
+                                  );
+                                } else {
+                                  return <span key={i} className="text-gray-300">★</span>;
+                                }
+                              });
+                            })()}
                           </div>
                           <span className="ml-1 text-sm text-gray-600">{manufacturer["Qualfirst Rating"]}</span>
                         </div>
