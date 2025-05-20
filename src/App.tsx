@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -21,6 +20,8 @@ import CatalogPage from "./pages/CatalogPage";
 import AllCategories from "./pages/AllCategories";
 import LoginPortal from "./pages/LoginPortal";
 import RaiseQuery from "./pages/RaiseQuery";
+import SupplierOnboarding from "./pages/SupplierOnboarding";
+import ThankYou from "./pages/ThankYou";
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -59,6 +60,8 @@ const App = () => (
           <Route path="/categories" element={<AllCategories />} />
           <Route path="/login-portal" element={<LoginPortal />} />
           <Route path="/raise-query" element={<RaiseQuery />} />
+          <Route path="/supplier-onboarding" element={<SupplierOnboarding />} />
+          <Route path="/thank-you" element={<ThankYou />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

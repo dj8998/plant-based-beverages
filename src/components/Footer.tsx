@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -31,7 +30,7 @@ const Footer = () => {
               <li><Link to="/login-portal" className="hover:text-gray-300">Login to Portal</Link></li>
               <li><Link to="/raise-query" className="hover:text-gray-300">Raise a query</Link></li>
               <li><Link to="/request-callback" className="hover:text-gray-300">Request a call back</Link></li>
-              <li><Link to="/request-callback" className="hover:text-gray-300">Get Listed</Link></li>
+              <li><Link to="/supplier-onboarding" className="hover:text-gray-300">Get Listed</Link></li>
             </ul>
           </div>
           
