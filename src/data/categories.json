@@ -1,261 +1,98 @@
-
 {
   "categories": [
     {
-      "id": "home-living",
-      "name": "Home & Living",
+      "id": "plant-based-beverages",
+      "name": "Plant-Based Beverages",
       "subcategories": [
         {
-          "id": "furniture",
-          "name": "Furniture",
+          "id": "soy-milk",
+          "name": "Soy Milk",
           "products": [
-            "ACCENTS FURNITURE", "ALMIRAHS AND CABINETS", "ANTIQUE FURNITURE", "BEACH FURNITURE", 
-            "BEDROOM FURNITURE", "BOOK CASES AND SHELVES", "CHILDREN'S FURNITURE", "CLASSROOM & STUDY FURNITURE",
-            "DINING ROOM FURNITURE", "FURNITURE COLONIAL", "FURNITURE-IRON", "FURNITURE-WOODEN",
-            "GARDEN FURNITURE", "HOTEL AND RESTAURANT FURNITURE", "KITCHEN FURNITURE", "LEATHER FURNITURE",
-            "LIVING ROOM FURNITURE", "STONE FURNITURE", "WROUGHT IRON FURNITURE"
+            "Soy Milk",
+            "Soy Milk Powder",
+            "Flavored Soy Milk",
+            "Organic Soy Milk",
+            "Fortified Soy Milk"
           ]
         },
         {
-          "id": "home-furnishings",
-          "name": "Home Furnishings",
+          "id": "almond-milk",
+          "name": "Almond Milk",
           "products": [
-            "BATHROOM LINEN", "BED COVERS", "BED LINEN", "BEDSHEETS", "BEDSPREADS", "CURTAINS AND DRAPERIES",
-            "CUSHION AND PILLOW COVERS", "DECORATIVE CUSHIONS", "DECORATIVE TABLE CLOTHS", "DUVETS QUILTS AND COVERLETS",
-            "HOME FURNISHINGS", "KITCHEN LINEN", "NAPKINS", "PLACE MATS", "READYMADE CURTAINS", "TABLE COVERINGS",
-            "TABLE LINEN", "TERRY TOWELS", "THROWS AND TAPESTRIES", "UPHOLSTERY FABRICS", "WALL DECORATIONS"
+            "Almond Milk",
+            "Almond Milk Powder",
+            "Flavored Almond Milk",
+            "Organic Almond Milk",
+            "Fortified Almond Milk"
           ]
         },
         {
-          "id": "carpets-rugs",
-          "name": "Carpets & Rugs",
+          "id": "millet-milk",
+          "name": "Millet Milk",
           "products": [
-            "CARPET HANDCUFFED", "CARPET SILK", "CARPETING AND FLOORINGS", "COIR DOOR MATS", "COIR FLOORINGS",
-            "COTTON & WOOLEN DURIES", "DURRIES", "FLOOR COVERINGS MATS", "FLOOR MATS", "HAND KNOTTED CARPETS AND RUGS",
-            "HANDMADE CARPETS AND RUGS", "JUTE FLOORINGS & DOOR MATS", "LEATHER CARPETS & RUGS", "RUGS IN NATURAL FIBERS",
-            "SILK AND WOOLEN CARPETS AND RUGS", "SYNTHETIC CARPETS AND RUGS", "WALL TO WALL CARPETS", "WOVEN CARPETS AND RUGS"
+            "Millet Milk",
+            "Millet Milk Powder",
+            "Flavored Millet Milk",
+            "Organic Millet Milk",
+            "Fortified Millet Milk"
           ]
         },
         {
-          "id": "garden-accessories",
-          "name": "Garden & Outdoor",
+          "id": "oat-milk",
+          "name": "Oat Milk",
           "products": [
-            "BARBEQUE EQUIPMENT", "FLOWER POTS", "GARDEN CONTAINERS STANDS", "GARDEN DECORATION AND ORNAMENTS",
-            "GARDEN FURNITURE", "GARDEN STATUES", "GARDEN TOOLS & EQUIPMENT", "GARDEN UMBRELLAS", "GAZEBOS",
-            "HAMMOCKS AND PARASOLS", "LANTERNS AND GARDEN LIGHTING", "MARBLE AND STONE FIGURINES",
-            "WATER FOUNTAINS AND DECORATIONS", "WIND CHIMES"
-          ]
-        },
-        {
-          "id": "lighting",
-          "name": "Lighting",
-          "products": [
-            "CHANDELIERS", "DECORATIVE LIGHT", "GLASS LAMPS", "HOME LIGHTING AND FIXTURES", "HURRICANE LAMPS",
-            "LAMP SHADES", "LAMPS", "LAMPS ACCESSORIES", "LAMPS HANGINGS", "LAMPS CANE AND BAMBOO",
-            "LAMPS WOODEN", "LANTERNS", "LIGHTING ACCESSORIES"
-          ]
-        },
-        {
-          "id": "bathroom-accessories",
-          "name": "Bathroom Accessories",
-          "products": [
-            "BATH TUBS", "BATHROOM ACCESSORIES", "BATHROOM CURTAINS", "BATHROOM FITTINGS", "BATHROOM MATS",
-            "BATHROOM MIRRORS", "BRUSHES, BROOMS AND MOPS", "HAND RAIL", "LAUNDRY BASKET", "SOAP DISPENSERS AND SETS",
-            "SOAP HOLDERS", "WASH BASINS"
+            "Oat Milk",
+            "Oat Milk Powder",
+            "Flavored Oat Milk",
+            "Organic Oat Milk",
+            "Fortified Oat Milk"
           ]
         }
       ]
     },
     {
-      "id": "decor-handicrafts",
-      "name": "Decor & Handicrafts",
+      "id": "plant-based-products",
+      "name": "Plant-Based Products",
       "subcategories": [
         {
-          "id": "handicrafts",
-          "name": "Handicrafts",
+          "id": "tofu-products",
+          "name": "Tofu Products",
           "products": [
-            "ANIMAL FIGURES", "ANTIQUE REPRODUCTIONS", "ARTISTIC STONEWARE", "BONE HANDICRAFTS", "BRASSWARE",
-            "BRONZE FIGURES", "CERAMICS", "COPPERWARE", "DHOKRA CRAFTS", "EARTHEN WARE", "FIGURINES",
-            "HANDICRAFTS ITEMS", "HORN CRAFTS", "IRONCRAFTS", "JUTE PRODUCTS", "LACQUER WARE", "LEATHER GOODS",
-            "MARBLE ALABASTER AND CRAFTED STONES", "MARBLE IN-LAY TABLETOPS", "MARBLE GLASS", "METALWARE",
-            "MURALS", "PAPIER MACHE", "POTTERY", "SANDALWOOD ARTICLES", "SCULPTURE", "SHELL CORAL", "SHELL GIFTS",
-            "SOAPSTONE CARVINGS", "WOODCRAFTS"
-          ]
-        },
-        {
-          "id": "decor-items",
-          "name": "Decorative Items",
-          "products": [
-            "ASH TRAYS", "BOXES – GIFT", "BOXES- DECORATIVE & JEWELLERY", "BOXES- MUSICAL", "CLOCKS TABLE AND WALL",
-            "DECORATIVE OBJECTS", "FLOWER WOODEN", "GIFTWARE", "GLASS DECORATIVE", "GOBLETS", "HOUSEHOLD PRODUCTSDECORATIVE",
-            "MIRRORS", "MIRRORS-TABLE/WALLS", "PICTURE FRAMES", "VASES", "WALL HANGINGS", "WALL PANELS", "WALL PLAQUES",
-            "WIRE WARE", "WOOD CARVINGS", "WOODEN GIFTS"
-          ]
-        },
-        {
-          "id": "art-paintings",
-          "name": "Art & Paintings",
-          "products": [
-            "ORIENTAL PAINTINGS", "PAINTINGS SCROLLS", "PAINTINGS ORIGINAL", "REPRODUCTION FINE ARTS", "SILK PAINTINGS",
-            "STAINED GLASS", "TANJORE PAINTING"
-          ]
-        },
-        {
-          "id": "ethnic-goods",
-          "name": "Ethnic Goods",
-          "products": [
-            "CEREMONIAL ITEMS", "ETHNIC GOODS", "ORIENTAL CRAFTS", "LESSER KNOWN HANDICRAFTS", "PUPPETS",
-            "RELIGIOUS GIFTS", "MASKS"
-          ]
-        },
-        {
-          "id": "eco-products",
-          "name": "Eco-Friendly Products",
-          "products": [
-            "ECO-FRIENDLY PRODUCTS", "NATURAL FIBRE PRODUCTS", "RECYCLED ITEMS", "SUSTAINABLE PRODUCTS"
+            "Regular Tofu",
+            "Silken Tofu",
+            "Firm Tofu",
+            "Extra Firm Tofu",
+            "Flavored Tofu"
           ]
         }
       ]
     },
     {
-      "id": "tableware-kitchen",
-      "name": "Tableware & Kitchen",
+      "id": "white-labeling",
+      "name": "White Labeling Services",
       "subcategories": [
         {
-          "id": "kitchenware",
-          "name": "Kitchenware",
+          "id": "beverage-white-labeling",
+          "name": "Beverage White Labeling",
           "products": [
-            "ALUMINIUM WARE", "CUTLERY", "CUTLERY, COOKING TOOLS & ACCESSORIES", "DISHES", "ENAMEL WARE",
-            "EPNE WARE", "KITCHENWARE", "STAINLESS STEEL TABLEWARE"
+            "Custom Formulation",
+            "Private Label Packaging",
+            "Bulk Supply",
+            "Quality Control",
+            "Regulatory Compliance",
+            "Distribution Support"
           ]
         },
         {
-          "id": "tableware",
-          "name": "Tableware",
+          "id": "product-white-labeling",
+          "name": "Product White Labeling",
           "products": [
-            "BONE CHINA WARE", "GLASSWARE", "GOLD PLATED WARE", "NAPKIN RINGS", "SILVERPLATED WARE",
-            "SILVERWARE", "SLATEWARE", "TABLE MATS", "TABLE TOP", "TABLE TOP MARBLE INLAY", "TABLEWARE",
-            "TABLEWARE CHINA", "TABLEWARE EARTHENWARE", "TABLEWARE PORCELAIN", "TABLEWARE STONEWARE",
-            "TABLEWARE-CERAMIC", "TRAYS"
-          ]
-        },
-        {
-          "id": "bar-accessories",
-          "name": "Bar Accessories",
-          "products": [
-            "BAR ACCESSORIES", "BARBEQUE ACCESSORIES", "BEER MUGS", "BONE CHINA MUGS", "WINE ACCESSORIES"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "fashion-accessories",
-      "name": "Fashion & Accessories",
-      "subcategories": [
-        {
-          "id": "fashion-jewellery",
-          "name": "Fashion Jewellery",
-          "products": [
-            "ANKLETS", "BEADS GLASS", "BEADS STONES", "BEADS WOOD", "BINDIS", "BRACELETS", "CHOKERS", 
-            "JEWELLERY BONE HORN", "JEWELLERY CHUNKY", "JEWELLERY COSTUMES", "JEWELLERY DESIGNER", "JEWELLERY ENAMEL",
-            "JEWELLERY ETHNIC", "JEWELLERY FASHION", "JEWELLERY JUTE", "JEWELLERY- LEATHER", "JEWELLERY METAL",
-            "JEWELLERY SHELL", "JEWELLERY SILVER", "JEWELLERY STONE", "JEWELLERY WOOD", "MEN'S JEWELLERY",
-            "PENDANTS", "RINGS"
-          ]
-        },
-        {
-          "id": "bags-accessories",
-          "name": "Bags & Accessories",
-          "products": [
-            "BACKPACKS AND KNAPSACKS", "BAGS", "BAGS BEADED", "BAGS COTTON", "BAGS EMBROIDERED", "BAGS JUTE",
-            "BAGS LEATHER", "BAGS SHOPPING", "BAGS TOILETRY", "BELTS AND ACCESSORIES", "CABIN BAGGAGE",
-            "CLUTCH PURSES", "COSMETIC/TOILETRY BAGS", "HAIR ACCESSORIES", "HATS AND CAPS", "LEATHER ACCESSORIES",
-            "LUGGAGE AND ACCESSORIES", "OFFICE BAGS", "PURSES", "RUG SACKS", "SACS BAGS", "SUITCASES", "TROLLEY BAGS"
-          ]
-        },
-        {
-          "id": "clothing-textiles",
-          "name": "Clothing & Textiles",
-          "products": [
-            "CHIKANKARI, EMBROIDERED GARMENTS", "CHIKEN DESIGNER WEAR", "COSTUMES, DRESSES & GARMENTS",
-            "GENTS SHORTS AND KURTAS", "HAND EMBROIDERED GARMENTS", "KAFTANS", "LADIES DRESSES", "LADIES SKIRTS AND TOPS",
-            "LEHNGAS", "PASHMINA SHAWLS AND STOLES", "SAREES", "SCARVES SHAWLS PAREUS GLOVES TIES", 
-            "SCARVES/SHAWLS/MUFFLERS", "SHAWLS EMBROIDERED", "SHAWLS HANDWOVEN", "SHAWLS OF SILK", "STOLES",
-            "YOGA CLOTHING", "ZARI & ZARDOZI EMBROIDERY"
-          ]
-        },
-        {
-          "id": "wellness-products",
-          "name": "Wellness Products",
-          "products": [
-            "EYE PILLOWS", "FACE COVERS", "FASHION MASKS", "FOOTWEAR AND SLIPPERS", "HARBEL PRODUCTS",
-            "MEDITATION ACCESSORIES", "NECK PILLOWS", "YOGA BAGS"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "festive-gifting",
-      "name": "Festive & Gifting",
-      "subcategories": [
-        {
-          "id": "festive-decorations",
-          "name": "Festive Decorations",
-          "products": [
-            "BULLION WIRE", "CARNIVAL ARTICLES", "CHRISTMAS TREE DECORATIONS AND ORNAMENTS", "DECORATION MATERIAL",
-            "EASTER ARTICLES AND DECORATIONS", "GIFTWRAP AND ACCESSORIES", "GREETING CARDS", "PAPER STAR",
-            "PARTY DECORATION ACCESSORIES"
-          ]
-        },
-        {
-          "id": "aromatics-candles",
-          "name": "Aromatics & Candles",
-          "products": [
-            "AROMATICS INCENSE AND OILS", "BEES WAX PRODUCTS", "CANDLE HOLDERS", "CANDLE LAMPS", "CANDLES",
-            "DRIED FLOWER", "DRY FLOWER POTPOURRI", "ENERGY CHIMES", "FLORAL DECORATIONS AND WREATHS", 
-            "INCENSE BURNERS", "INCENSE HOLDERS", "INCENSE STICKS AND GIFTSETS", "OIL DEFUSER", "POTPOURRI",
-            "POTPOURRI HOLDERS", "SALT LAMP"
-          ]
-        },
-        {
-          "id": "spiritual-meditation",
-          "name": "Spiritual & Meditation",
-          "products": [
-            "HEALING CRYSTAL BANDS", "MEDITATION BRACELETS", "MEDITATION CHAIR", "MEDITATION CUSHIONS",
-            "SINGING BOWLS", "TIBETAN TINGSHA CYMBALS", "YOGA MATS", "ZAFU PILLOW"
-          ]
-        },
-        {
-          "id": "corporate-gifts",
-          "name": "Corporate Gifts",
-          "products": [
-            "BRIDAL GIFTS", "BRUSH SETS", "CORPORATE GIFTS", "MEDALS & TROPHIES", "MILITARY MODELS",
-            "NAUTICAL DÉCOR AND INSTRUMENTS", "BOARD GAMES", "CHESS SETS", "EDUCATIONAL GAMES AND TOYS",
-            "SOFT TOYS", "TABLE TOP GAMES", "TOYS-WOODEN"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "specialty-collectibles",
-      "name": "Specialty & Collectibles",
-      "subcategories": [
-        {
-          "id": "collectibles",
-          "name": "Collectibles",
-          "products": [
-            "AGATE", "ALABASTER WARE", "MINIATURE AND MODELS", "MONEY BOXES", "MARINE INSTRUMENTS", "MUSICAL BOXES",
-            "MUSICAL FIGURES", "MUSICAL INSTRUMENTS", "NAMEPLATES", "NAUTICAL INSTRUMENTS", "NUTCRACKERS", "ONYXWARE",
-            "PEWTERWARE", "PORCELAIN ORNAMENTS", "RESIN BRONZE FIGURINES", "TRINKET BOXES"
-          ]
-        },
-        {
-          "id": "specialty-items",
-          "name": "Specialty Items",
-          "products": [
-            "PET BEDS", "PET CANISTERS", "PET FEEDERS", "PET HOUSE/CAGES", "PET ITEMS", "PET LEASH HOLDERS",
-            "PET STORAGE", "PET URNS", "PHOTOGRAPH ALBUM", "PIPES", "POCKET WATCH", "PORCELAIN- DOLLS",
-            "SMOKERS SETS", "SMOKING ACCESSORIES", "SPORTS EQUIPMENT", "SPORTS GOODS", "SPORTS WEAR", "WALKING STICKS"
+            "Custom Product Development",
+            "Private Label Manufacturing",
+            "Packaging Solutions",
+            "Quality Assurance",
+            "Supply Chain Management",
+            "Export Support"
           ]
         }
       ]

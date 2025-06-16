@@ -1,0 +1,610 @@
+{
+  "productDetails": {
+    "Soy Milk": {
+      "overview": {
+        "description": "Our premium soy milk is crafted from carefully selected soybeans, offering a rich source of plant-based protein and essential nutrients. It's a versatile and wholesome addition to any diet.",
+        "features": [
+          "High in protein (7-8g per serving)",
+          "Naturally cholesterol-free",
+          "Rich in calcium and vitamin D",
+          "Smooth, creamy texture",
+          "Versatile for various applications"
+        ]
+      },
+      "nutritionalBenefits": [
+        "Excellent source of complete plant protein",
+        "Supports muscle health and recovery",
+        "Naturally low in saturated fat",
+        "Contains essential amino acids"
+      ],
+      "cleanLabelPromise": [
+        "Made with minimal ingredients",
+        "No artificial flavors, colors, or preservatives",
+        "Non-GMO verified",
+        "Clean, simple ingredient list"
+      ],
+      "idealUseCases": [
+        "Smoothies & Shakes",
+        "Coffee & Tea (dairy alternative)",
+        "Baking & Cooking",
+        "Cereals & Breakfast bowls",
+        "Retail brands looking for protein-rich options"
+      ],
+      "packaging": {
+        "formats": [
+          {
+            "type": "Tetra Pak",
+            "sizes": ["1L", "500ml", "250ml"]
+          },
+          {
+            "type": "Bottles",
+            "sizes": ["1L", "500ml"]
+          },
+          {
+            "type": "Bulk",
+            "sizes": ["5L", "10L", "200L drums"]
+          }
+        ]
+      },
+      "shelfLife": {
+        "details": [
+          "Unopened: 6-12 months at room temperature (UHT processed)",
+          "Opened: 7-10 days when refrigerated",
+          "Best before date clearly marked on packaging"
+        ]
+      },
+      "certifications": {
+        "details": [
+          "FSSAI Certified",
+          "ISO 22000",
+          "USFDA-ready",
+          "Halal Certified",
+          "Kosher Certified",
+          "Organic Certified (for organic variants)"
+        ]
+      },
+      "moq": {
+        "details": [
+          {
+            "type": "Retail Pack",
+            "quantity": "10,000 units"
+          },
+          {
+            "type": "Bulk Pack",
+            "quantity": "5,000 units"
+          }
+        ]
+      },
+      "customOptions": {
+        "details": [
+          "Custom flavoring & sweetener options",
+          "Fortification with vitamins, minerals (e.g., B12, D)",
+          "Specialized packaging formats (e.g., pouches)",
+          "Private labeling & co-packing services",
+          "Custom nutritional profiles"
+        ]
+      },
+      "variants": [
+        {
+          "name": "Regular",
+          "description": "Classic soy milk with a smooth, creamy texture",
+          "features": ["7-8g protein per serving", "Fortified with calcium and vitamin D"]
+        },
+        {
+          "name": "Organic",
+          "description": "Certified organic soy milk made from premium organic soybeans",
+          "features": ["USDA Organic certified", "No pesticides or GMOs"]
+        },
+        {
+          "name": "Unsweetened",
+          "description": "Pure soy milk without added sugars",
+          "features": ["Zero added sugars", "Perfect for cooking and baking"]
+        }
+      ]
+    },
+    "Almond Milk": {
+      "overview": {
+        "description": "Crafted from premium California almonds, our Almond Milk offers a naturally sweet and delicate nutty flavor with a smooth, creamy texture. It's an ideal dairy-free alternative.",
+        "features": [
+          "Naturally low in calories",
+          "Rich in vitamin E",
+          "Delicate, nutty taste",
+          "Creamy texture",
+          "No artificial flavors or colors"
+        ]
+      },
+      "nutritionalBenefits": [
+        "Good source of Vitamin E for antioxidant support",
+        "Naturally lactose-free and dairy-free",
+        "Low in saturated fats",
+        "Supports healthy skin and eyes"
+      ],
+      "cleanLabelPromise": [
+        "Simple, natural ingredients",
+        "No added sugars (for unsweetened variants)",
+        "No undesirable additives",
+        "Non-GMO certified"
+      ],
+      "idealUseCases": [
+        "Coffee & Lattes",
+        "Smoothies & Protein Shakes",
+        "Cereals & Oatmeal",
+        "Vegan Baking",
+        "Retail & Cafe applications"
+      ],
+      "packaging": {
+        "formats": [
+          {
+            "type": "Tetra Pak",
+            "sizes": ["1L", "500ml", "250ml"]
+          },
+          {
+            "type": "Bottles",
+            "sizes": ["1L", "500ml"]
+          },
+          {
+            "type": "Bulk",
+            "sizes": ["5L", "10L", "200L drums"]
+          }
+        ]
+      },
+      "shelfLife": {
+        "details": [
+          "Unopened: 6-12 months at room temperature (UHT processed)",
+          "Opened: 7-10 days when refrigerated",
+          "Best before date clearly marked on packaging"
+        ]
+      },
+      "certifications": {
+        "details": [
+          "FSSAI Certified",
+          "ISO 22000",
+          "USFDA-ready",
+          "Halal Certified",
+          "Kosher Certified",
+          "Organic Certified (for organic variants)"
+        ]
+      },
+      "moq": {
+        "details": [
+          {
+            "type": "Retail Pack",
+            "quantity": "10,000 units"
+          },
+          {
+            "type": "Bulk Pack",
+            "quantity": "5,000 units"
+          }
+        ]
+      },
+      "customOptions": {
+        "details": [
+          "Custom sweetness levels & flavor profiles",
+          "Fortification with vitamins (e.g., B12, D, Calcium)",
+          "Specialized packaging solutions",
+          "Private labeling options",
+          "Tailored fat and protein content"
+        ]
+      },
+      "variants": [
+        {
+          "name": "Original",
+          "description": "Classic almond milk with a hint of natural sweetness",
+          "features": ["Rich in vitamin E", "Creamy texture"]
+        },
+        {
+          "name": "Unsweetened",
+          "description": "Pure almond milk without added sugars",
+          "features": ["Zero added sugars", "Perfect for coffee and cooking"]
+        },
+        {
+          "name": "Barista Blend",
+          "description": "Specially formulated for coffee and lattes",
+          "features": ["Froths perfectly", "No curdling in hot beverages"]
+        }
+      ]
+    },
+    "Millet Milk": {
+      "overview": {
+        "description": "Our nutritious Millet Milk is made from ancient grains, offering a unique, earthy taste and a rich nutritional profile. It's naturally gluten-free and easy to digest.",
+        "features": [
+          "Gluten-free",
+          "Rich in minerals and antioxidants",
+          "Naturally sweet taste",
+          "Smooth texture",
+          "Suitable for various dietary needs"
+        ]
+      },
+      "nutritionalBenefits": [
+        "Naturally gluten-free and easy to digest",
+        "Good source of dietary fiber and minerals (e.g., Magnesium, Phosphorus)",
+        "Supports gut health and metabolism",
+        "Hypoallergenic alternative"
+      ],
+      "cleanLabelPromise": [
+        "Crafted from whole millet grains",
+        "No artificial additives or preservatives",
+        "Sourced sustainably",
+        "Clean, simple ingredient list"
+      ],
+      "idealUseCases": [
+        "Daily Beverage",
+        "Cereals & Porridges",
+        "Post-Workout Recovery",
+        "Vegan Desserts",
+        "Health-focused retail brands"
+      ],
+      "packaging": {
+        "formats": [
+          {
+            "type": "Tetra Pak",
+            "sizes": ["1L", "500ml", "250ml"]
+          },
+          {
+            "type": "Bottles",
+            "sizes": ["1L", "500ml"]
+          },
+          {
+            "type": "Bulk",
+            "sizes": ["5L", "10L", "200L drums"]
+          }
+        ]
+      },
+      "shelfLife": {
+        "details": [
+          "Unopened: 6-12 months at room temperature (UHT processed)",
+          "Opened: 7-10 days when refrigerated",
+          "Best before date clearly marked on packaging"
+        ]
+      },
+      "certifications": {
+        "details": [
+          "FSSAI Certified",
+          "ISO 22000",
+          "USFDA-ready",
+          "Halal Certified",
+          "Kosher Certified",
+          "Organic Certified (for organic variants)"
+        ]
+      },
+      "moq": {
+        "details": [
+          {
+            "type": "Retail Pack",
+            "quantity": "10,000 units"
+          },
+          {
+            "type": "Bulk Pack",
+            "quantity": "5,000 units"
+          }
+        ]
+      },
+      "customOptions": {
+        "details": [
+          "Custom flavor profiles & natural sweeteners",
+          "Fortification with essential nutrients",
+          "Diverse packaging designs and sizes",
+          "Private label solutions",
+          "Specific grain blends (e.g., finger millet, pearl millet)"
+        ]
+      },
+      "variants": [
+        {
+          "name": "Classic",
+          "description": "Traditional millet milk with a natural, earthy taste",
+          "features": ["Rich in minerals", "Gluten-free"]
+        },
+        {
+          "name": "Fortified",
+          "description": "Enhanced with essential vitamins and minerals",
+          "features": ["Added calcium and vitamin D", "Complete nutrition"]
+        },
+        {
+          "name": "Organic",
+          "description": "Made from certified organic millet",
+          "features": ["USDA Organic certified", "Pure and natural"]
+        }
+      ]
+    },
+    "Oat Milk": {
+      "overview": {
+        "description": "Our creamy Oat Milk is made from whole grain oats, offering a naturally sweet taste and a smooth, comforting texture. It's an excellent dairy-free choice and environmentally sustainable.",
+        "features": [
+          "Naturally sweet taste",
+          "Creamy texture",
+          "High in fiber",
+          "Beta-glucan rich",
+          "Environmentally sustainable"
+        ]
+      },
+      "nutritionalBenefits": [
+        "Rich in beta-glucan for heart health",
+        "Good source of dietary fiber",
+        "Naturally cholesterol-free",
+        "Supports digestive health"
+      ],
+      "cleanLabelPromise": [
+        "Made from whole grain oats",
+        "No artificial additives",
+        "Environmentally conscious production",
+        "Simple, clean ingredients"
+      ],
+      "idealUseCases": [
+        "Coffee & Lattes",
+        "Cereals & Oatmeal",
+        "Baking & Cooking",
+        "Smoothies & Shakes",
+        "Retail & Foodservice"
+      ],
+      "packaging": {
+        "formats": [
+          {
+            "type": "Tetra Pak",
+            "sizes": ["1L", "500ml", "250ml"]
+          },
+          {
+            "type": "Bottles",
+            "sizes": ["1L", "500ml"]
+          },
+          {
+            "type": "Bulk",
+            "sizes": ["5L", "10L", "200L drums"]
+          }
+        ]
+      },
+      "shelfLife": {
+        "details": [
+          "Unopened: 6-12 months at room temperature (UHT processed)",
+          "Opened: 7-10 days when refrigerated",
+          "Best before date clearly marked on packaging"
+        ]
+      },
+      "certifications": {
+        "details": [
+          "FSSAI Certified",
+          "ISO 22000",
+          "USFDA-ready",
+          "Halal Certified",
+          "Kosher Certified",
+          "Organic Certified (for organic variants)"
+        ]
+      },
+      "moq": {
+        "details": [
+          {
+            "type": "Retail Pack",
+            "quantity": "10,000 units"
+          },
+          {
+            "type": "Bulk Pack",
+            "quantity": "5,000 units"
+          }
+        ]
+      },
+      "customOptions": {
+        "details": [
+          "Custom creaminess and sweetness levels",
+          "Fortification with vitamins and minerals",
+          "Specialized packaging formats (e.g., aseptic bags)",
+          "Private labeling and branding support",
+          "Gluten-free certified oat options"
+        ]
+      },
+      "variants": [
+        {
+          "name": "Original",
+          "description": "Classic oat milk with a naturally sweet taste",
+          "features": ["Creamy texture", "Perfect for coffee"]
+        },
+        {
+          "name": "Barista Edition",
+          "description": "Specially formulated for coffee professionals",
+          "features": ["Superior frothing", "No curdling in hot drinks"]
+        },
+        {
+          "name": "Unsweetened",
+          "description": "Pure oat milk without added sugars",
+          "features": ["Zero added sugars", "Versatile for all uses"]
+        }
+      ]
+    },
+    "Tofu": {
+      "overview": {
+        "description": "Our premium tofu is made from high-quality soybeans, offering a versatile and protein-rich plant-based food. It's a staple for vegan and vegetarian diets, easily absorbing flavors.",
+        "features": [
+          "High in plant-based protein",
+          "Excellent source of iron and calcium",
+          "Low in calories and fat",
+          "Versatile for cooking",
+          "Gluten-free"
+        ]
+      },
+      "nutritionalBenefits": [
+        "Complete protein source, supporting muscle repair and growth",
+        "Contains all nine essential amino acids",
+        "Rich in isoflavones, known for health benefits",
+        "Good for bone health due to calcium content"
+      ],
+      "cleanLabelPromise": [
+        "Made with non-GMO soybeans",
+        "No artificial preservatives or additives",
+        "Simple, natural ingredients",
+        "Minimally processed"
+      ],
+      "idealUseCases": [
+        "Stir-fries & Curries",
+        "Salads & Bowls",
+        "Grilling & Baking",
+        "Soups & Stews",
+        "Vegan meat alternatives"
+      ],
+      "packaging": {
+        "formats": [
+          {
+            "type": "Vacuum Pack",
+            "sizes": ["300g", "500g", "1kg"]
+          },
+          {
+            "type": "Bulk",
+            "sizes": ["5kg", "10kg", "20kg blocks"]
+          }
+        ]
+      },
+      "shelfLife": {
+        "details": [
+          "Unopened: 6-9 months refrigerated",
+          "Opened: 3-5 days refrigerated in water",
+          "Best before date clearly marked on packaging"
+        ]
+      },
+      "certifications": {
+        "details": [
+          "FSSAI Certified",
+          "ISO 22000",
+          "Halal Certified",
+          "Kosher Certified (for specific variants)",
+          "Organic Certified (for organic variants)"
+        ]
+      },
+      "moq": {
+        "details": [
+          {
+            "type": "Retail Pack",
+            "quantity": "5,000 units"
+          },
+          {
+            "type": "Bulk Pack",
+            "quantity": "2,000 units"
+          }
+        ]
+      },
+      "customOptions": {
+        "details": [
+          "Various firmness levels (silken, soft, firm, extra-firm)",
+          "Fortified with vitamins and minerals",
+          "Marinated & pre-seasoned options",
+          "Smoked or fried varieties",
+          "Private labeling services"
+        ]
+      },
+      "variants": [
+        {
+          "name": "Firm Tofu",
+          "description": "Versatile and firm, ideal for stir-frying and grilling",
+          "features": ["High protein", "Holds shape well"]
+        },
+        {
+          "name": "Silken Tofu",
+          "description": "Smooth and creamy, perfect for smoothies, desserts, and sauces",
+          "features": ["Soft texture", "Blends easily"]
+        },
+        {
+          "name": "Smoked Tofu",
+          "description": "Tofu with a rich, smoky flavor, ready to eat or add to dishes",
+          "features": ["Pre-flavored", "Great for salads"]
+        }
+      ]
+    },
+    "Coconut Milk": {
+      "overview": {
+        "description": "Our rich and creamy Coconut Milk is extracted from fresh, mature coconuts, offering a naturally sweet and aromatic base for a variety of culinary uses. It's an excellent dairy-free alternative.",
+        "features": [
+          "Rich and creamy texture",
+          "Natural coconut aroma",
+          "Versatile for sweet and savory dishes",
+          "Lactose-free and dairy-free",
+          "No artificial ingredients"
+        ]
+      },
+      "nutritionalBenefits": [
+        "Contains medium-chain triglycerides (MCTs)",
+        "Good source of vitamins and minerals (e.g., Manganese, Copper)",
+        "Supports electrolyte balance",
+        "Naturally vegan"
+      ],
+      "cleanLabelPromise": [
+        "Made from fresh coconuts",
+        "No added sugars (for unsweetened variants)",
+        "No thickeners or gums (for pure variants)",
+        "Minimal processing"
+      ],
+      "idealUseCases": [
+        "Curries & Soups",
+        "Desserts & Puddings",
+        "Smoothies & Beverages",
+        "Baking & Cooking",
+        "Dairy-free alternative in coffee"
+      ],
+      "packaging": {
+        "formats": [
+          {
+            "type": "Tetra Pak",
+            "sizes": ["1L", "500ml", "250ml"]
+          },
+          {
+            "type": "Cans",
+            "sizes": ["400ml", "200ml"]
+          },
+          {
+            "type": "Bulk",
+            "sizes": ["5L", "10L", "200L drums"]
+          }
+        ]
+      },
+      "shelfLife": {
+        "details": [
+          "Unopened: 12-24 months at room temperature (canned/UHT)",
+          "Opened: 3-5 days refrigerated",
+          "Best before date clearly marked on packaging"
+        ]
+      },
+      "certifications": {
+        "details": [
+          "FSSAI Certified",
+          "ISO 22000",
+          "Halal Certified",
+          "Kosher Certified (for specific variants)",
+          "Organic Certified (for organic variants)"
+        ]
+      },
+      "moq": {
+        "details": [
+          {
+            "type": "Retail Pack",
+            "quantity": "10,000 units"
+          },
+          {
+            "type": "Bulk Pack",
+            "quantity": "5,000 units"
+          }
+        ]
+      },
+      "customOptions": {
+        "details": [
+          "Various fat percentages (light, regular, full-fat)",
+          "Sweetened or unsweetened options",
+          "Organic variants available",
+          "Private labeling & co-packing services",
+          "Custom flavor infusions"
+        ]
+      },
+      "variants": [
+        {
+          "name": "Full Fat",
+          "description": "Rich and creamy, ideal for curries and desserts",
+          "features": ["High fat content", "Thick consistency"]
+        },
+        {
+          "name": "Light",
+          "description": "Lighter version with reduced fat, suitable for beverages",
+          "features": ["Lower calories", "Thinner consistency"]
+        },
+        {
+          "name": "Organic",
+          "description": "Certified organic coconut milk from sustainably sourced coconuts",
+          "features": ["USDA Organic", "Pure and natural"]
+        }
+      ]
+    }
+  }
+} 

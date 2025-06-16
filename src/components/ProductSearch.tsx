@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,17 +48,17 @@ const ProductSearch = () => {
     
     categoriesData.categories.forEach(category => {
       category.subcategories.forEach(subcategory => {
-        // Match subcategories
+        // Match subcategories - now also treated as products for direct linking
         if (subcategory.name.toLowerCase().includes(lowerCaseQuery)) {
           results.push({
-            type: 'subcategory',
+            type: 'product', // Treat as product for direct linking
             name: subcategory.name,
             categoryId: category.id,
             subcategoryId: subcategory.id
           });
         }
         
-        // Match products
+        // Match products (if they exist separately under subcategories)
         if (subcategory.products) {
           subcategory.products.forEach(product => {
             if (product.toLowerCase().includes(lowerCaseQuery)) {
@@ -90,6 +89,10 @@ const ProductSearch = () => {
     e.preventDefault();
     console.log("Searching for:", searchQuery);
     // This would typically navigate to search results page with the query
+    if (searchResults.length > 0) {
+        const firstResultSlug = createSlug(searchResults[0].name);
+        window.location.href = `/product/${firstResultSlug}`;
+    }
   };
 
   // Helper function to create URL-safe slug
@@ -98,27 +101,26 @@ const ProductSearch = () => {
   };
 
   return (
-    <div className="bg-pink-light py-12">
+    <div className="bg-green-100 py-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-2xl font-bold mb-6">HAVE A SPECIFIC PRODUCT IN MIND?</h2>
+        <h2 className="text-3xl font-bold mb-6 text-emerald-800">FIND YOUR PERFECT PLANT-BASED MATCH</h2>
         <div className="relative">
           <form onSubmit={handleSearchSubmit} className="flex items-center justify-center">
             <div className="relative w-full max-w-lg">
               <Input
                 ref={inputRef}
-                className="w-full pr-10"
+                className="w-full pr-10 border-emerald-300 focus:border-emerald-500"
                 type="search"
-                placeholder="Search for products..."
+                placeholder="Search for soy milk, almond milk, oat milk, or millet milk..."
                 value={searchQuery}
                 onChange={handleSearchChange}
                 onFocus={() => searchQuery.length >= 2 && setShowDropdown(true)}
               />
               <Button 
                 type="submit" 
-                className="absolute inset-y-0 right-0 px-3 flex items-center"
-                variant="ghost"
+                className="absolute inset-y-0 right-0 px-3 flex items-center bg-emerald-600 hover:bg-emerald-700 text-white"
               >
-                <Search className="h-5 w-5 text-gray-400" />
+                <Search className="h-5 w-5" />
               </Button>
             </div>
           </form>
@@ -127,24 +129,22 @@ const ProductSearch = () => {
           {showDropdown && (
             <div 
               ref={dropdownRef}
-              className="absolute mt-1 w-full max-w-lg bg-white border border-gray-200 rounded-md shadow-lg z-20 max-h-80 overflow-y-auto left-1/2 transform -translate-x-1/2"
+              className="absolute mt-1 w-full max-w-lg bg-white border border-emerald-200 rounded-md shadow-lg z-20 max-h-80 overflow-y-auto left-1/2 transform -translate-x-1/2"
             >
               {searchResults.length > 0 ? (
                 <div>
                   {searchResults.map((result, index) => (
                     <Link
                       key={index}
-                      to={result.type === 'subcategory' 
-                        ? `/category/${result.categoryId}/${result.subcategoryId}` 
-                        : `/product/${createSlug(result.name)}`}
-                      className="block px-4 py-2 text-sm hover:bg-gray-100 border-b border-gray-100 last:border-b-0"
+                      to={`/product/${createSlug(result.name)}`} // Always link to product page
+                      className="block px-4 py-2 text-sm hover:bg-emerald-50 border-b border-emerald-100 last:border-b-0 text-gray-800"
                       onClick={() => setShowDropdown(false)}
                     >
                       <div className="flex items-start">
                         <div>
-                          <div className="font-medium">{result.name}</div>
+                          <div className="font-medium text-emerald-700">{result.name}</div>
                           <div className="text-xs text-gray-500">
-                            {result.type === 'subcategory' ? 'Category' : 'Product'} in {
+                            {result.type === 'subcategory' ? 'Product Category' : 'Product'} in {
                               categoriesData.categories.find(cat => cat.id === result.categoryId)?.name
                             }
                           </div>

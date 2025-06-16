@@ -32,6 +32,12 @@ const roleOptions = [
   { value: "other", label: "Other" },
 ];
 
+const categoryOptions = [
+  { value: "plant-based-beverages", label: "Plant-Based Beverages" },
+  { value: "plant-based-products", label: "Plant-Based Products" },
+  { value: "white-labeling", label: "White Labeling Services" },
+];
+
 export default function MultiStepInquiry({ open, onClose }: MultiStepInquiryProps) {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);

@@ -1,80 +1,86 @@
-
 import Navbar from '../components/Navbar';
-import CategoryNav from '../components/CategoryNav';
 import Footer from '../components/Footer';
+import { Leaf, Award, Rocket, CheckCircle, Lightbulb, Globe } from "lucide-react";
 
 const AboutUs = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <CategoryNav />
       <main className="flex-grow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-3xl font-bold mb-6 text-center">About Us</h1>
-          
-          <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Bridging Continents, Empowering Commerce</h2>
-            <p className="mb-4">
-              At qualFirst, our mission is to demystify and streamline the global sourcing process from India, making it accessible, reliable, and sustainable for businesses worldwide.
-            </p>
-            
-            <h3 className="text-xl font-medium mt-6 mb-3">What We Stand For</h3>
-            <ul className="list-disc pl-5 mb-6 space-y-2">
-              <li>Transparency in every transaction and relationship</li>
-              <li>Quality assurance through rigorous verification and monitoring</li>
-              <li>Ethical sourcing and support for sustainable manufacturing practices</li>
-              <li>Fair partnerships that benefit both buyers and manufacturers</li>
-              <li>Innovation in the traditional sourcing model</li>
-            </ul>
-            
-            <h3 className="text-xl font-medium mt-6 mb-3">Our Story</h3>
-            <p className="mb-4">
-              qualFirst was born from a simple observation: while India offers exceptional manufacturing capabilities, international buyers often struggle with finding reliable partners, navigating cultural differences, and ensuring consistent quality.
-            </p>
-            <p className="mb-4">
-              Our founders, with decades of experience in global trade and manufacturing, set out to create a platform that addresses these challenges head-on. By combining technology with on-the-ground expertise, we've developed a system that brings confidence, efficiency, and reliability to India-sourced products.
-            </p>
-            
-            <h3 className="text-xl font-medium mt-6 mb-3">Our Commitment</h3>
-            <p>
-              We are committed to facilitating meaningful connections between international businesses and Indian manufacturers that go beyond transactional relationships. Our goal is to foster long-term partnerships built on trust, mutual growth, and shared success.
+        <div className="bg-gradient-to-br from-emerald-50 via-white to-sage-50 py-16 text-center">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in-up">
+              About QualFirst: Your Plant-Based Export Partner
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+              QualFirst is a new-generation export brand powered by cutting-edge food tech, meticulous clean sourcing, and unwavering global quality standards.
             </p>
           </div>
-          
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <h2 className="text-2xl font-semibold mb-4">The qualFirst Advantage</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-lg font-medium mb-3">Vetted Manufacturing Network</h3>
-                <p>
-                  Every manufacturer on our platform undergoes thorough verification, facility audits, and regular quality assessments. We know our partners personally and understand their capabilities in depth.
-                </p>
+        </div>
+
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-lg shadow-xl p-8 mb-12 border border-emerald-100 animate-fade-in animation-delay-300">
+              <h2 className="text-3xl font-bold mb-6 text-center text-emerald-800">More Than Just a Supplier: Your Single Point Partner</h2>
+              <p className="mb-6 text-lg text-gray-700 text-center">
+                We are not just a directory or a passive supplier list. At QualFirst, we act as your independent trading partner, managing every aspect of sourcing clean-label, plant-based beverages from India. From initial product conceptualization and formulation to rigorous quality control, regulatory compliance, and seamless global logistics, we are your single point of contact, ensuring a smooth and successful export journey.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 text-center">
+                <div className="flex flex-col items-center">
+                  <Leaf className="h-12 w-12 text-emerald-600 mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Clean Sourcing</h3>
+                  <p className="text-gray-600 text-sm">Dedicated to finding the purest plant-based ingredients.</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Award className="h-12 w-12 text-emerald-600 mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Global Quality</h3>
+                  <p className="text-gray-600 text-sm">Adhering to the highest international food safety and quality benchmarks.</p>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Rocket className="h-12 w-12 text-emerald-600 mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Food Tech Driven</h3>
+                  <p className="text-gray-600 text-sm">Leveraging innovation for superior product development and efficiency.</p>
+                </div>
               </div>
-              
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-12">
               <div>
-                <h3 className="text-lg font-medium mb-3">Simplified Sourcing</h3>
-                <p>
-                  Our platform eliminates complexity by standardizing communications, streamlining negotiations, and providing clear, actionable information at every step of the sourcing journey.
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission & Values</h2>
+                <p className="text-lg text-gray-600 mb-6">
+                  Our mission is to empower global wellness brands by simplifying the complex process of sourcing high-quality, clean-label plant-based beverages from India. We are committed to building long-term partnerships based on trust, transparency, and shared success.
                 </p>
+                <ul className="space-y-4 text-gray-700">
+                  <li className="flex items-start">
+                    <CheckCircle className="h-6 w-6 text-emerald-600 mr-3 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Transparency:</span> Clear communication and honest practices in every interaction.
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <Lightbulb className="h-6 w-6 text-emerald-600 mr-3 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Innovation:</span> Continuously exploring new food technologies and sustainable practices.
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <Globe className="h-6 w-6 text-emerald-600 mr-3 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold">Global Standards:</span> Ensuring all products meet stringent international quality and safety benchmarks.
+                    </div>
+                  </li>
+                </ul>
               </div>
-              
-              <div>
-                <h3 className="text-lg font-medium mb-3">Local Expertise, Global Reach</h3>
-                <p>
-                  With teams on the ground in major manufacturing hubs across India, we provide local insights and support while serving clients worldwide.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-medium mb-3">End-to-End Support</h3>
-                <p>
-                  From initial inquiry to final delivery, we're with you every step of the way, ensuring smooth communication, quality production, and timely fulfillment.
-                </p>
+              <div className="mt-10 lg:mt-0">
+                <img 
+                  src="/images/about/mission.jpg" 
+                  alt="QualFirst Team working on plant-based products" 
+                  className="rounded-lg shadow-xl border border-sage-100 object-cover w-full h-80"
+                />
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
       <Footer />
     </div>

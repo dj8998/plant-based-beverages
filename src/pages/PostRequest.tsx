@@ -1,29 +1,40 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '@/lib/supabase/client';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import Navbar from '../components/Navbar';
-import CategoryNav from '../components/CategoryNav';
 import Footer from '../components/Footer';
 
-export default function PostRequest() {
+const PostRequest = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    category: "",
-    quantity: "",
-    description: "",
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    category: '',
+    productDetails: '',
+    quantity: '',
+    targetPrice: '',
+    packagingRequirements: '',
+    shippingPreferences: '',
+    additionalInfo: '',
+    created_at: new Date().toISOString()
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, category: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,31 +43,52 @@ export default function PostRequest() {
 
     try {
       const { error } = await supabase
-        .from("product_requests")
-        .insert([formData]);
+        .from('product_requirements')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          category: formData.category,
+          product_details: formData.productDetails,
+          quantity: formData.quantity,
+          target_price: formData.targetPrice,
+          packaging_requirements: formData.packagingRequirements,
+          shipping_preferences: formData.shippingPreferences,
+          additional_info: formData.additionalInfo,
+          created_at: formData.created_at,
+        }]);
 
       if (error) throw error;
 
       toast({
-        title: "Success!",
-        description: "Your product request has been submitted. We'll get back to you soon.",
+        title: "Request Submitted",
+        description: "Your product requirement has been submitted successfully! We'll get back to you soon.",
       });
 
       // Reset form
       setFormData({
-        name: "",
-        email: "",
-        company: "",
-        phone: "",
-        category: "",
-        quantity: "",
-        description: "",
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        category: '',
+        productDetails: '',
+        quantity: '',
+        targetPrice: '',
+        packagingRequirements: '',
+        shippingPreferences: '',
+        additionalInfo: '',
+        created_at: new Date().toISOString()
       });
+
+      // Redirect to thank you page
+      navigate('/thank-you');
     } catch (error) {
-      console.error("Error submitting request:", error);
+      console.error('Error submitting form:', error);
       toast({
         title: "Error",
-        description: "Failed to submit request. Please try again.",
+        description: "There was an error submitting your request. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -67,146 +99,196 @@ export default function PostRequest() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <CategoryNav />
       <main className="flex-grow">
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <h1 className="text-3xl font-bold mb-2 text-center">Post a Product Request</h1>
-              <p className="text-center text-gray-600 mb-8">
-                Tell us what you're looking for and we'll help you find the right supplier
-              </p>
-              
+        <div className="bg-gradient-to-br from-emerald-50 via-white to-sage-50 py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">
+              Post Your Product Requirement
+            </h1>
+            <p className="text-lg text-gray-600 text-center mb-12">
+              Tell us about your product needs, and we'll help you source the perfect plant-based solution.
+            </p>
+
+            <div className="bg-white rounded-lg shadow-lg p-8 border border-emerald-100">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-1">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                       Full Name *
                     </label>
-                    <input
-                      type="text"
+                    <Input
                       id="name"
                       name="name"
+                      required
                       value={formData.name}
                       onChange={handleChange}
-                      required
-                      placeholder="John Doe"
-                      className="w-full px-3 py-2 border rounded-md"
+                      className="w-full"
+                      placeholder="Enter your full name"
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1">
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                       Email Address *
                     </label>
-                    <input
-                      type="email"
+                    <Input
                       id="email"
                       name="email"
+                      type="email"
+                      required
                       value={formData.email}
                       onChange={handleChange}
-                      required
-                      placeholder="you@example.com"
-                      className="w-full px-3 py-2 border rounded-md"
+                      className="w-full"
+                      placeholder="Enter your email address"
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium mb-1">
-                      Company Name
+                  <div className="space-y-2">
+                    <label htmlFor="company" className="block text-sm font-medium text-gray-700">
+                      Company Name *
                     </label>
-                    <input
-                      type="text"
+                    <Input
                       id="company"
                       name="company"
+                      required
                       value={formData.company}
                       onChange={handleChange}
-                      placeholder="Your Company Ltd."
-                      className="w-full px-3 py-2 border rounded-md"
+                      className="w-full"
+                      placeholder="Enter your company name"
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-1">
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
                       Phone Number *
                     </label>
-                    <input
-                      type="tel"
+                    <Input
                       id="phone"
                       name="phone"
+                      type="tel"
+                      required
                       value={formData.phone}
                       onChange={handleChange}
+                      className="w-full"
+                      placeholder="Enter your phone number"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                      Product Category *
+                    </label>
+                    <Select onValueChange={handleSelectChange} value={formData.category}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="soy-milk">Soy Milk</SelectItem>
+                        <SelectItem value="almond-milk">Almond Milk</SelectItem>
+                        <SelectItem value="millet-milk">Millet Milk</SelectItem>
+                        <SelectItem value="oat-milk">Oat Milk</SelectItem>
+                        <SelectItem value="coconut-milk">Coconut Milk</SelectItem>
+                        <SelectItem value="tofu">Tofu</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="quantity" className="block text-sm font-medium text-gray-700">
+                      Required Quantity *
+                    </label>
+                    <Input
+                      id="quantity"
+                      name="quantity"
                       required
-                      placeholder="+1 123 456 7890"
-                      className="w-full px-3 py-2 border rounded-md"
+                      value={formData.quantity}
+                      onChange={handleChange}
+                      className="w-full"
+                      placeholder="Enter required quantity"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="category" className="block text-sm font-medium mb-1">
-                    Product Category *
+                <div className="space-y-2">
+                  <label htmlFor="productDetails" className="block text-sm font-medium text-gray-700">
+                    Product Requirements *
                   </label>
-                  <select
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
+                  <Textarea
+                    id="productDetails"
+                    name="productDetails"
                     required
-                    className="w-full px-3 py-2 border rounded-md"
-                  >
-                    <option value="">Select a category</option>
-                    <option value="furniture">Furniture</option>
-                    <option value="decor">Home Decor</option>
-                    <option value="textiles">Textiles</option>
-                    <option value="handicrafts">Handicrafts</option>
-                    <option value="specialty">Specialty & Collectibles</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="quantity" className="block text-sm font-medium mb-1">
-                    Required Quantity *
-                  </label>
-                  <input
-                    type="text"
-                    id="quantity"
-                    name="quantity"
-                    value={formData.quantity}
+                    value={formData.productDetails}
                     onChange={handleChange}
-                    required
-                    placeholder="e.g., 100 pieces, 500 units"
-                    className="w-full px-3 py-2 border rounded-md"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="description" className="block text-sm font-medium mb-1">
-                    Product Description *
-                  </label>
-                  <textarea
-                    id="description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                    rows={5}
+                    className="w-full min-h-[150px]"
                     placeholder="Please provide detailed specifications, requirements, and any other relevant information about the product you're looking for."
-                    className="w-full px-3 py-2 border rounded-md"
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 disabled:opacity-50"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Request"}
-                </button>
+                <div className="space-y-2">
+                  <label htmlFor="targetPrice" className="block text-sm font-medium text-gray-700">
+                    Target Price (Optional)
+                  </label>
+                  <Input
+                    id="targetPrice"
+                    name="targetPrice"
+                    value={formData.targetPrice}
+                    onChange={handleChange}
+                    className="w-full"
+                    placeholder="e.g., $X.XX per liter, or specify currency and unit"
+                  />
+                </div>
 
-                <p className="text-center text-sm text-gray-500">
-                  Our team will review your request and get back to you within 24-48 hours.
-                </p>
+                <div className="space-y-2">
+                  <label htmlFor="packagingRequirements" className="block text-sm font-medium text-gray-700">
+                    Packaging Requirements (Optional)
+                  </label>
+                  <Textarea
+                    id="packagingRequirements"
+                    name="packagingRequirements"
+                    value={formData.packagingRequirements}
+                    onChange={handleChange}
+                    className="w-full min-h-[100px]"
+                    placeholder="e.g., Aseptic tetra pack, PET bottles, specific sizes, branding needs."
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="shippingPreferences" className="block text-sm font-medium text-gray-700">
+                    Shipping Preferences (Optional)
+                  </label>
+                  <Textarea
+                    id="shippingPreferences"
+                    name="shippingPreferences"
+                    value={formData.shippingPreferences}
+                    onChange={handleChange}
+                    className="w-full min-h-[100px]"
+                    placeholder="e.g., FOB, CIF, preferred port, delivery timeline."
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="additionalInfo" className="block text-sm font-medium text-gray-700">
+                    Additional Information (Optional)
+                  </label>
+                  <Textarea
+                    id="additionalInfo"
+                    name="additionalInfo"
+                    value={formData.additionalInfo}
+                    onChange={handleChange}
+                    className="w-full min-h-[100px]"
+                    placeholder="Any other details, certifications, or specific questions."
+                  />
+                </div>
+
+                <div className="flex justify-center">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-emerald-600 text-white px-8 py-3 rounded-md hover:bg-emerald-700 transition-colors"
+                  >
+                    {isSubmitting ? 'Submitting...' : 'Submit Requirement'}
+                  </Button>
+                </div>
               </form>
             </div>
           </div>
@@ -215,4 +297,6 @@ export default function PostRequest() {
       <Footer />
     </div>
   );
-}
+};
+
+export default PostRequest;

@@ -17,6 +17,9 @@ export const images = {
     'fashion-accessories': '/images/category-icons/handicrafts.jpg',
     'festive-gifting': '/images/category-icons/Group-1.png',
     'specialty-collectibles': '/images/category-icons/Vector.png',
+    'plant-based-beverages': '/images/category-icons/beverages.jpg',
+    'plant-based-products': '/images/category-icons/products.jpg',
+    'white-labeling': '/images/category-icons/white-label.jpg',
   },
   
   // Product Images
