@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useIsMobile } from '@/hooks/use-mobile';
+import SupplierCard from '@/components/SupplierCard';
 
 // Type for manufacturer data
 type Manufacturer = {
@@ -22,6 +23,15 @@ type Manufacturer = {
   phone: string | null;
   email: string | null;
   "Qualfirst Rating": number | null;
+  YOE?: string;
+  Countries?: string;
+  Size?: string;
+  Location?: string;
+  SpecialRemark?: string;
+  Instagram?: string;
+  Linkedin?: string;
+  Facebook?: string;
+  sustainable: 'Y' | 'N';
 };
 
 type MappingStats = {
@@ -388,76 +398,38 @@ const SubcategoryPage = () => {
                 )}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredManufacturers.map((manufacturer, index) => {
-                  const isVerified = (manufacturer as any).verified_flag;
                   let websiteUrl = (manufacturer as any).web;
                   if (websiteUrl && !/^https?:\/\//i.test(websiteUrl)) {
                     websiteUrl = 'https://' + websiteUrl;
                   }
-                  const topCategory = manufacturer["Top Category"] || '';
-                  const products = (manufacturer.product || '').split(',').map(p => p.trim().toLowerCase()).filter(Boolean);
                   const rating10 = manufacturer["Qualfirst Rating"] || 0;
-                  const rating5 = Math.round((rating10 / 2) * 10) / 10; // one decimal
-                  const fullStars = Math.floor(rating5);
-                  const partialStar = rating5 - fullStars;
+                  const rating5 = Math.round((rating10 / 2) * 10) / 10;
+                  
+                  // Map manufacturer fields to SupplierCard props
+                  const supplier = {
+                    name: manufacturer.company_name,
+                    rating: rating5,
+                    YOE: manufacturer.YOE || '',
+                    Countries: manufacturer.Countries || '',
+                    Size: manufacturer.Size || '',
+                    Location: manufacturer.Location || '',
+                    SpecialRemark: (manufacturer as any).SpecialRemark || undefined,
+                    Instagram: (manufacturer as any).Instagram || undefined,
+                    Linkedin: (manufacturer as any).Linkedin || undefined,
+                    Facebook: (manufacturer as any).Facebook || undefined,
+                    sustainable: (manufacturer as any).sustainable as 'Y' | 'N',
+                    product: manufacturer.product || ''
+                  };
+                  
                   return (
-                    <div key={index} className="relative border rounded-lg p-6 bg-white shadow-sm flex flex-col h-full">
-                      {/* Verified badge */}
-                      {isVerified && (
-                        <div
-                          className="absolute -top-3 -left-3 bg-white border border-black rounded px-2 py-1 flex items-center justify-center font-bold text-black text-sm shadow z-10 cursor-pointer"
-                          title="QF Verified"
-                          style={{ minWidth: '32px', minHeight: '32px' }}
-                        >
-                          V
-                        </div>
-                      )}
-                      {/* Supplier name */}
-                      <h3 className="text-2xl font-bold mb-2 text-center mt-2">{manufacturer.company_name}</h3>
-                      {/* Rating */}
-                      <div className="flex items-center justify-center mb-2 group cursor-pointer" title="QF Rating">
-                        <span className="text-xl font-semibold mr-1">{rating5.toFixed(1)}</span>
-                        <div className="flex">
-                          {Array.from({ length: 5 }).map((_, i) => {
-                            if (i < fullStars) {
-                              return <span key={i} className="text-yellow-400">★</span>;
-                            } else if (i === fullStars && partialStar > 0) {
-                              return (
-                                <span key={i} className="relative">
-                                  <span className="text-gray-300">★</span>
-                                  <span 
-                                    className="absolute top-0 left-0 text-yellow-400 overflow-hidden" 
-                                    style={{ width: `${partialStar * 100}%` }}
-                                  >
-                                    ★
-                                  </span>
-                                </span>
-                              );
-                            } else {
-                              return <span key={i} className="text-gray-300">★</span>;
-                            }
-                          })}
-                        </div>
-                      </div>
-                      {/* Verified line */}
-                      <div className="text-center text-gray-700 mb-4">Verified Manufacturer of {topCategory}</div>
-                      {/* Products */}
-                      <div className="mb-4 text-sm text-gray-600">
-                        <span className="font-semibold">Products:</span> {products.join(', ')}
-                      </div>
-                      {/* Action buttons */}
-                      <div className="mt-auto flex flex-col gap-2">
-                        {websiteUrl && (
-                          <a href={websiteUrl} target="_blank" rel="noopener noreferrer" className="w-full bg-gray-100 text-black py-2 rounded hover:bg-gray-200 text-center font-medium">Visit Website</a>
-                        )}
-                        <button
-                          className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 font-medium"
-                          onClick={() => handleContactSupplier(manufacturer.company_name)}
-                        >
-                          Contact Supplier
-                        </button>
-                      </div>
+                    <div key={index}>
+                      <SupplierCard 
+                        supplier={supplier} 
+                        onContactClick={handleContactSupplier}
+                        websiteUrl={websiteUrl}
+                      />
                     </div>
                   );
                 })}
