@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import WhyQualFirst from '../components/CompanyInfo';
+import { Feature } from "@/components/ui/feature-with-advantages";
 import OurProducts from '../components/OurProducts';
 import HowItWorks from '../components/ConnectSteps';
 import WhatWeOffer from '../components/WhatWeOffer';
@@ -41,7 +41,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
-        <WhyQualFirst />
+        <Feature />
         <OurProducts />
         <HowItWorks />
         <WhatWeOffer />
