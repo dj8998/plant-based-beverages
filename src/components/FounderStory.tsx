@@ -29,9 +29,9 @@ function FounderStory() {
   return (
     <div className="w-full py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex gap-4 items-center flex-col lg:flex-row">
+        <div className="flex gap-4 lg:gap-8 items-center flex-col lg:flex-row">
           {/* Left side - Story content */}
-          <div className="flex-1 flex flex-col gap-8">
+          <div className="flex-1 flex flex-col gap-6 lg:gap-8">
             <div className="flex gap-4 flex-col">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
@@ -39,25 +39,25 @@ function FounderStory() {
                 </div>
                 <span className="text-black font-semibold text-lg">Our Story</span>
               </div>
-              <h2 className="text-3xl md:text-5xl tracking-tighter font-regular text-gray-900 founder-story-heading">
+              <h2 className="text-2xl md:text-3xl lg:text-5xl tracking-tighter font-regular text-gray-900 founder-story-heading">
                 The Millet Milk Discovery
               </h2>
-              <p className="text-lg md:text-xl leading-relaxed text-gray-600 max-w-2xl founder-story-description">
+              <p className="text-base md:text-lg lg:text-xl leading-relaxed text-gray-600 max-w-2xl founder-story-description">
                 How ancient Indian wisdom is reshaping the global plant milk industry, one premium export at a time.
               </p>
             </div>
 
-            <div className="grid gap-6 md:gap-8">
+            <div className="grid gap-4 lg:gap-6 md:gap-8">
               {storyPoints.map((point, index) => (
-                <div key={index} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-black border-2 border-gray-200">
+                <div key={index} className="flex gap-3 lg:gap-4 items-start">
+                  <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 bg-white rounded-full shadow-lg flex items-center justify-center text-black border-2 border-gray-200">
                     {point.icon}
                   </div>
-                  <div className="flex-1 pt-2">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  <div className="flex-1 pt-1 lg:pt-2">
+                    <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-2 lg:mb-3">
                       {point.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-sm lg:text-base text-gray-600 leading-relaxed">
                       {point.description}
                     </p>
                   </div>
@@ -65,14 +65,14 @@ function FounderStory() {
               ))}
             </div>
 
-            <div className="flex gap-4 pt-6">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-4 lg:pt-6 items-center">
               <Link to="/contact">
-                <Button size="lg" className="bg-black hover:bg-gray-800">
+                <Button size="default" className="bg-black hover:bg-gray-800 text-sm py-2 px-6">
                   Partner With Us
                 </Button>
               </Link>
               <Link to="/about-us">
-                <Button size="lg" variant="outline" className="border-black text-black hover:bg-gray-50">
+                <Button size="default" variant="outline" className="border-black text-black hover:bg-gray-50 text-sm py-2 px-6">
                   Learn Our Process
                 </Button>
               </Link>
@@ -80,50 +80,50 @@ function FounderStory() {
           </div>
 
           {/* Right side - Visual element */}
-          <div className="flex-1 flex flex-col gap-6 lg:pl-8">
+          <div className="flex-1 flex flex-col gap-4 lg:gap-6 lg:pl-8">
             <div className="relative">
-              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
-                <div className="text-center mb-6">
-                  <h4 className="text-2xl font-semibold text-gray-900 mb-2">
+              <div className="bg-white rounded-2xl shadow-xl p-4 lg:p-8 border border-gray-200">
+                <div className="text-center mb-4 lg:mb-6">
+                  <h4 className="text-xl lg:text-2xl font-semibold text-gray-900 mb-2">
                     Why Millet Milk?
                   </h4>
-                  <p className="text-gray-600">
+                  <p className="text-sm lg:text-base text-gray-600">
                     The numbers speak for themselves
                   </p>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-black">6x</div>
-                    <div className="text-sm text-gray-600">More protein than almond milk</div>
+                <div className="grid grid-cols-2 gap-3 lg:gap-6">
+                  <div className="text-center p-3 lg:p-4 bg-gray-50 rounded-lg">
+                    <div className="text-lg lg:text-2xl font-bold text-black">6x</div>
+                    <div className="text-xs lg:text-sm text-gray-600">More protein than almond milk</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-black">90%</div>
-                    <div className="text-sm text-gray-600">Less water than almonds</div>
+                  <div className="text-center p-3 lg:p-4 bg-gray-50 rounded-lg">
+                    <div className="text-lg lg:text-2xl font-bold text-black">90%</div>
+                    <div className="text-xs lg:text-sm text-gray-600">Less water than almonds</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-black">0</div>
-                    <div className="text-sm text-gray-600">Common allergens</div>
+                  <div className="text-center p-3 lg:p-4 bg-gray-50 rounded-lg">
+                    <div className="text-lg lg:text-2xl font-bold text-black">0</div>
+                    <div className="text-xs lg:text-sm text-gray-600">Common allergens</div>
                   </div>
-                  <div className="text-center p-4 bg-gray-50 rounded-lg">
-                    <div className="text-2xl font-bold text-black">5000+</div>
-                    <div className="text-sm text-gray-600">Years of cultivation</div>
+                  <div className="text-center p-3 lg:p-4 bg-gray-50 rounded-lg">
+                    <div className="text-lg lg:text-2xl font-bold text-black">5000+</div>
+                    <div className="text-xs lg:text-sm text-gray-600">Years of cultivation</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-black to-gray-800 rounded-2xl p-6 text-white">
-              <blockquote className="text-lg italic mb-4">
+            <div className="bg-gradient-to-r from-black to-gray-800 rounded-2xl p-4 lg:p-6 text-white">
+              <blockquote className="text-base lg:text-lg italic mb-4">
                 "While everyone was chasing the next trendy superfood, the answer was growing in India's fields all along."
               </blockquote>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                  <span className="text-lg font-semibold">QF</span>
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <span className="text-base lg:text-lg font-semibold">QF</span>
                 </div>
                 <div>
-                  <div className="font-semibold">QualFirst Founder</div>
-                  <div className="text-gray-300 text-sm">Plant Milk Innovation Pioneer</div>
+                  <div className="font-semibold text-sm lg:text-base">QualFirst Founder</div>
+                  <div className="text-gray-300 text-xs lg:text-sm">Plant Milk Innovation Pioneer</div>
                 </div>
               </div>
             </div>

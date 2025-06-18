@@ -10,28 +10,28 @@ import { FounderStory } from "@/components/FounderStory";
 
 const FinalCta = () => {
   return (
-    <section className="py-16 bg-black text-white text-center">
+    <section className="py-12 lg:py-16 bg-black text-white text-center">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold mb-6">
+        <h2 className="text-3xl lg:text-4xl font-bold mb-4 lg:mb-6">
           Ready to Grow Your Plant-Based Brand Globally?
         </h2>
-        <p className="text-lg mb-10">
+        <p className="text-base lg:text-lg mb-8 lg:mb-10">
           Partner with QualFirst for seamless sourcing, precise quality control, and efficient export of your clean-label, alt-dairy beverages from India.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link to="/inquiry">
-            <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-md transition-transform transform hover:scale-105">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 lg:gap-4">
+          <Link to="/inquiry" className="w-full sm:w-auto">
+            <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-4 rounded-md transition-transform transform hover:scale-105 w-full sm:w-auto">
               Request Samples
             </Button>
           </Link>
-          <Link to="/post-requirement">
-            <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-4 rounded-md transition-transform transform hover:scale-105">
+          <Link to="/post-requirement" className="w-full sm:w-auto">
+            <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-4 rounded-md transition-transform transform hover:scale-105 w-full sm:w-auto">
               Post Your Requirement
             </Button>
           </Link>
         </div>
       </div>
-      <div className="w-full h-px bg-white mt-16"></div>
+      <div className="w-full h-px bg-white mt-12 lg:mt-16"></div>
     </section>
   );
 };

@@ -97,14 +97,14 @@ const ProductHero: React.FC<ProductHeroProps> = ({
               })}
             </div>
 
-            <div className="flex gap-4 pt-6">
-              <Link to="/contact">
-                <Button size="lg" className="bg-black hover:bg-gray-800">
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 pt-4 lg:pt-6">
+              <Link to="/contact" className="w-full sm:w-auto">
+                <Button size="lg" className="bg-black hover:bg-gray-800 w-full sm:w-auto">
                   Request Samples
                 </Button>
               </Link>
-              <Link to="/products">
-                <Button size="lg" variant="outline" className="border-black text-black hover:bg-gray-50">
+              <Link to="/products" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="border-black text-black hover:bg-gray-50 w-full sm:w-auto">
                   View Variants
                 </Button>
               </Link>

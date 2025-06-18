@@ -66,14 +66,14 @@ function Hero() {
               While the world drinks almond and oat, we're sourcing India's ancient grains for the next plant milk revolution. QualFirst exports premium millet milk and plant-based beverages with precision quality control and seamless global logistics. 
             </p>
           </div>
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto items-center">
             <Link to="/contact">
-              <Button size="lg" className="gap-4" variant="outline">
+              <Button size="default" className="gap-2 text-sm py-2 px-6" variant="outline">
                 Request Millet Samples <PhoneCall className="w-4 h-4" />
               </Button>
             </Link>
             <Link to="/products">
-              <Button size="lg" className="gap-4">
+              <Button size="default" className="gap-2 text-sm py-2 px-6">
                 Explore Full Portfolio <MoveRight className="w-4 h-4" />
               </Button>
             </Link>

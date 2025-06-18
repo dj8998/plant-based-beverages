@@ -65,22 +65,30 @@ function FeatureSectionWithGrid() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {products.map((product) => (
               <Link to={product.link} key={product.id} className="flex flex-col gap-2 group rounded-lg">
-                <div className="bg-white rounded-md mb-2 flex items-center justify-center overflow-hidden">
-                  <img src={product.image} alt={product.name} className="object-contain h-48" />
+                <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="text-xl tracking-tight group-hover:text-emerald-700 transition-colors">{product.name}</h3>
-                <p className="text-muted-foreground text-base">
-                  {product.description}
-                </p>
+                <div className="p-3 lg:p-4">
+                  <h3 className="text-lg lg:text-xl font-semibold text-gray-900 mb-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm lg:text-base text-gray-600">
+                    {product.description}
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
-          <div className="mt-12 text-center">
+          <div className="mt-8 lg:mt-12 text-center flex flex-col items-center">
             <Link to="/products">
-              <Button size="lg" className="bg-black hover:bg-gray-800 text-white px-8 py-4 rounded-md transition-transform transform hover:scale-105">
+              <Button size="default" className="bg-black hover:bg-gray-800 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-md transition-transform transform hover:scale-105 text-sm">
                 View All Product Offerings
               </Button>
             </Link>
