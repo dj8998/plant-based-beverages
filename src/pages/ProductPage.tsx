@@ -32,15 +32,15 @@ const ProductPage: React.FC = () => {
 
   if (!productName || !productDetails.productDetails[productName]) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
         <Navbar />
-        <div className="container mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <h1 className="text-2xl font-semibold text-gray-900 mb-4">Product Not Found</h1>
             <p className="text-gray-600 mb-8">The product you're looking for doesn't exist.</p>
             <button
               onClick={() => navigate('/')}
-              className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+              className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
             >
               Return Home
             </button>
@@ -54,7 +54,7 @@ const ProductPage: React.FC = () => {
   const product = productDetails.productDetails[productName];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <ProductHero
         name={productName}

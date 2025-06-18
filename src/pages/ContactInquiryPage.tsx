@@ -115,42 +115,42 @@ const ContactInquiryPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Contact Information Column */}
-              <div className="bg-white rounded-lg shadow-lg p-8 border border-emerald-100">
+              <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h2>
                 <div className="space-y-4">
                   <div>
                     <h3 className="font-medium text-gray-900">Email</h3>
-                    <p className="text-gray-600">info@qualfirst.com</p>
+                    <p className="text-gray-600">business@qualfirst.co.in</p>
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900">Phone</h3>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">+919660810447</p>
                   </div>
                   <div>
                     <h3 className="font-medium text-gray-900">Address</h3>
                     <p className="text-gray-600">
-                      123 Business Street<br />
-                      Suite 100<br />
-                      New York, NY 10001
+                      Navneet building, Santacruz west<br />
+                      Mumbai, MH 400054<br />
+                      India
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* Form Column */}
-              <div className="bg-white rounded-lg shadow-lg p-8 border border-emerald-100">
+              <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
                 <div className="flex space-x-4 mb-8">
                   <Button
                     variant={formType === 'contact' ? 'default' : 'outline'}
                     onClick={() => setFormType('contact')}
-                    className={formType === 'contact' ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'border-emerald-600 text-emerald-600 hover:bg-emerald-50'}
+                    className={formType === 'contact' ? 'bg-black text-white hover:bg-gray-800' : 'border-black text-black hover:bg-gray-50'}
                   >
                     Contact Us
                   </Button>
                   <Button
                     variant={formType === 'inquiry' ? 'default' : 'outline'}
                     onClick={() => setFormType('inquiry')}
-                    className={formType === 'inquiry' ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'border-emerald-600 text-emerald-600 hover:bg-emerald-50'}
+                    className={formType === 'inquiry' ? 'bg-black text-white hover:bg-gray-800' : 'border-black text-black hover:bg-gray-50'}
                   >
                     Product Inquiry
                   </Button>
@@ -288,7 +288,7 @@ const ContactInquiryPage = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="bg-emerald-600 text-white px-8 py-3 rounded-md hover:bg-emerald-700 transition-colors"
+                      className="bg-black text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors"
                     >
                       {isSubmitting ? 'Sending...' : (formType === 'contact' ? 'Send Message' : 'Submit Inquiry')}
                     </Button>

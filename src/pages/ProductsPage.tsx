@@ -47,7 +47,7 @@ const ProductsPage = () => {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow">
-        <div className="bg-gradient-to-br from-emerald-50 via-white to-sage-50 py-16 text-center">
+        <div className="bg-white py-16 text-center">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate-fade-in-up">
               Our Plant-Based Product Range
@@ -58,20 +58,20 @@ const ProductsPage = () => {
           </div>
         </div>
 
-        <section className="py-16 bg-white">
+        <section className="py-12 lg:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {products.map((product) => (
                 <Link key={product.id} to={`/product/${product.id}`}>
-                  <div className="bg-white rounded-lg p-6 shadow-md border border-emerald-100 transition-transform transform hover:scale-105 hover:shadow-lg h-full flex flex-col items-center justify-between text-center">
+                  <div className="bg-white rounded-lg p-6 shadow-md border border-gray-200 transition-transform transform hover:scale-105 hover:shadow-lg h-full flex flex-col items-center justify-between text-center">
                     <img 
                       src={product.image}
                       alt={product.name}
                       className="w-48 h-64 object-contain mb-4"
                     />
-                    <h3 className="text-xl font-semibold text-emerald-800 mb-2">{product.name}</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
                     <p className="text-gray-600 text-sm mb-4">{product.description}</p>
-                    <Button className="bg-emerald-600 text-white px-6 py-2 rounded-md hover:bg-emerald-700 transition-colors mt-auto">
+                    <Button className="bg-black text-white px-6 py-2 rounded-md hover:bg-gray-800 transition-colors mt-auto">
                       View Details
                     </Button>
                   </div>

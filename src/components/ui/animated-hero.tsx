@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
@@ -24,11 +25,13 @@ function Hero() {
   return (
     <div className="w-full">
       <div className="container mx-auto">
-        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
-          <div>
-            <Button variant="secondary" size="sm" className="gap-4">
-              Read our launch article <MoveRight className="w-4 h-4" />
-            </Button>
+        <div className="flex gap-8 py-8 lg:py-12 items-center justify-center flex-col">
+          <div className="mt-4">
+            <Link to="/about-us">
+              <Button variant="secondary" size="sm" className="gap-4">
+                Read our launch article <MoveRight className="w-4 h-4" />
+              </Button>
+            </Link>
           </div>
           <div className="flex gap-4 flex-col">
             <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
@@ -64,12 +67,16 @@ function Hero() {
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Button size="lg" className="gap-4" variant="outline">
-              Request Millet Samples <PhoneCall className="w-4 h-4" />
-            </Button>
-            <Button size="lg" className="gap-4">
-              Request Millet Samples <MoveRight className="w-4 h-4" />
-            </Button>
+            <Link to="/contact">
+              <Button size="lg" className="gap-4" variant="outline">
+                Request Millet Samples <PhoneCall className="w-4 h-4" />
+              </Button>
+            </Link>
+            <Link to="/products">
+              <Button size="lg" className="gap-4">
+                Explore Full Portfolio <MoveRight className="w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

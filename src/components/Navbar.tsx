@@ -49,7 +49,7 @@ const Navbar = () => {
             </Link>
           </div>
           
-          <div className="hidden md:block flex-1 mx-10">
+          {/* <div className="hidden md:block flex-1 mx-10">
             <div className="flex items-center justify-center">
               <div className="relative w-full max-w-xl">
                 <Input
@@ -65,7 +65,7 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           
           <div className="hidden md:block">
             <div className="flex items-center ml-4 space-x-4">

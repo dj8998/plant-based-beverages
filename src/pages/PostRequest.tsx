@@ -100,7 +100,7 @@ const PostRequest = () => {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow">
-        <div className="bg-gradient-to-br from-emerald-50 via-white to-sage-50 py-16">
+        <div className="bg-white py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">
               Post Your Product Requirement
@@ -109,7 +109,7 @@ const PostRequest = () => {
               Tell us about your product needs, and we'll help you source the perfect plant-based solution.
             </p>
 
-            <div className="bg-white rounded-lg shadow-lg p-8 border border-emerald-100">
+            <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
@@ -284,7 +284,7 @@ const PostRequest = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-emerald-600 text-white px-8 py-3 rounded-md hover:bg-emerald-700 transition-colors"
+                    className="bg-black text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit Requirement'}
                   </Button>

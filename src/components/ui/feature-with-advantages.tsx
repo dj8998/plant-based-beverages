@@ -1,11 +1,13 @@
 import { Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 function Feature() {
   return (
-    <div className="w-full py-20 lg:py-40">
-      <div className="container mx-auto">
-        <div className="flex gap-4 py-20 lg:py-40 flex-col items-start">
+    <div className="w-full py-4 lg:py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex gap-4 py-4 lg:py-8 flex-col items-start">
           <div>
             <Badge>Platform</Badge>
           </div>
@@ -17,7 +19,7 @@ function Feature() {
               Sourcing plant-based products from India shouldn't be complicated. We've simplified every step to help your brand scale globally.
             </p>
           </div>
-          <div className="flex gap-10 pt-12 flex-col w-full">
+          <div className="flex gap-10 pt-8 flex-col w-full">
             <div className="grid grid-cols-2 items-start lg:grid-cols-3 gap-10">
               <div className="flex flex-row gap-6 w-full items-start">
                 <Check className="w-4 h-4 mt-2 text-primary" />
@@ -73,6 +75,18 @@ function Feature() {
                   </p>
                 </div>
               </div>
+            </div>
+            <div className="flex gap-4 pt-6">
+              <Link to="/contact">
+                <Button size="lg" className="bg-black hover:bg-gray-800">
+                  Get Started
+                </Button>
+              </Link>
+              <Link to="/about-us">
+                <Button size="lg" variant="outline" className="border-black text-black hover:bg-gray-50">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
