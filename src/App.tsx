@@ -17,6 +17,7 @@ import ThankYou from "./pages/ThankYou";
 import ServicesPage from "./pages/ServicesPage";
 import ProductsPage from "./pages/ProductsPage";
 import ContactInquiryPage from "./pages/ContactInquiryPage";
+import LaunchArticle from "./pages/LaunchArticle";
 
 // Scroll to top component
 const ScrollToTop = () => {
@@ -53,6 +54,7 @@ const App = () => (
           <Route path="/raise-query" element={<RaiseQuery />} />
           <Route path="/thank-you" element={<ThankYou />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/launch-article" element={<LaunchArticle />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

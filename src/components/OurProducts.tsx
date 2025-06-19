@@ -35,11 +35,11 @@ const OurProducts = () => {
           {mainProducts.map((product) => (
             <Link key={product.id} to={`/product/${product.id}`}>
               <div className="bg-white rounded-lg p-6 shadow-md border border-emerald-100 transition-transform transform hover:scale-105 hover:shadow-lg h-full flex flex-col items-center justify-between text-center">
-                <div className="w-48 h-64 mb-4">
+                <div className="w-36 h-48 mb-4 overflow-hidden rounded-lg">
                   <img 
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 <h3 className="text-xl font-semibold text-emerald-800 mb-2">{product.name}</h3>

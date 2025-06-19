@@ -66,9 +66,9 @@ function FeatureSectionWithGrid() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {products.map((product) => (
+            {products.slice(0, 3).map((product) => (
               <Link to={product.link} key={product.id} className="flex flex-col gap-2 group rounded-lg">
-                <div className="aspect-square overflow-hidden rounded-lg bg-gray-100">
+                <div className="w-40 h-56 mx-auto overflow-hidden rounded-lg flex items-center justify-center">
                   <img
                     src={product.image}
                     alt={product.name}

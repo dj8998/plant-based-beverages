@@ -1,107 +1,70 @@
-
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import CategoryNav from '../components/CategoryNav';
-import Footer from '../components/Footer';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Understanding Indian Manufacturing Standards for Export",
-    excerpt: "A comprehensive guide to the quality standards and certifications required for exporting products from India.",
-    date: "May 15, 2025",
-    imageUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=600",
-    author: "Rahul Sharma"
-  },
-  {
-    id: 2,
-    title: "Sustainable Sourcing: The Future of Home Furnishings",
-    excerpt: "Explore how sustainable materials and ethical production are shaping the future of India's home furnishing industry.",
-    date: "May 10, 2025",
-    imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=600",
-    author: "Priya Patel"
-  },
-  {
-    id: 3,
-    title: "Navigating Supply Chain Challenges in 2025",
-    excerpt: "Insights on how to overcome common supply chain disruptions and delays when working with overseas manufacturers.",
-    date: "May 05, 2025",
-    imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80&w=600",
-    author: "David Singh"
-  },
-  {
-    id: 4,
-    title: "Trending Handicrafts from Rural India",
-    excerpt: "Discover unique handicraft products from rural artisans that are gaining popularity in international markets.",
-    date: "April 28, 2025",
-    imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600",
-    author: "Anita Desai"
-  },
-  {
-    id: 5,
-    title: "How to Verify Manufacturer Credentials",
-    excerpt: "A step-by-step guide to vetting potential manufacturing partners and ensuring they meet your quality requirements.",
-    date: "April 22, 2025",
-    imageUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80&w=600",
-    author: "Michael Rodriguez"
-  }
-];
-
-const Blog = () => {
+const Blog: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <CategoryNav />
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl font-bold mb-6">Industry Insights & Updates</h1>
-          <p className="text-gray-600 mb-8 max-w-3xl">
-            Stay updated with the latest trends, insights, and best practices in the manufacturing industry. 
-            Our experts share valuable information to help you make informed decisions for your business.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
-              <Card key={post.id} className="overflow-hidden hover:shadow-md transition-shadow">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={post.imageUrl} 
-                    alt={post.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-xl">{post.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{post.excerpt}</p>
-                </CardContent>
-                <CardFooter className="flex justify-between items-center text-sm text-gray-500">
-                  <span>{post.date} • {post.author}</span>
-                  <Link to={`/blog/${post.id}`} className="text-blue-600 hover:underline">Read more</Link>
-                </CardFooter>
-              </Card>
-            ))}
+    <section className="bg-white min-h-screen py-16 px-4 flex flex-col items-center">
+      <div className="max-w-4xl w-full mx-auto">
+        <h1 className="text-5xl font-bold text-gray-900 mb-4 leading-tight">The Millet Milk Revolution Is Coming</h1>
+        <p className="text-xl text-gray-700 mb-8">Why the world's next great plant-based drink might come from India's oldest grain.</p>
+        <hr className="my-8 border-gray-200" />
+        <p className="text-lg text-gray-700 mb-8">At QualFirst, we're not just exporting products — we're <span className="text-emerald-700 font-semibold">exporting ancient wisdom in modern packaging</span>. And it all begins with <span className="text-emerald-700 font-semibold">millet milk</span>.</p>
+        <div className="flex flex-col md:flex-row gap-8 mb-12">
+          <div className="flex-1 min-w-[280px]">
+            <img src="/images/products/millet milk.png" alt="Millet Milk Pour" className="rounded-xl shadow-lg w-full object-cover aspect-[4/5]" />
           </div>
-          
-          <div className="mt-12 bg-gray-50 p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-2">Subscribe to Our Newsletter</h2>
-            <p className="mb-4 text-gray-600">Get the latest industry insights delivered directly to your inbox</p>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input 
-                type="email" 
-                placeholder="Your email address"
-                className="px-4 py-2 border border-gray-300 rounded flex-grow"
-              />
-              <Button className="bg-black text-white hover:bg-gray-800">Subscribe</Button>
+          <div className="flex-1 flex flex-col gap-6 justify-center">
+            <div>
+              <h2 className="text-2xl font-semibold text-emerald-900 mb-2 flex items-center gap-2">
+                <span>From Forgotten Grain to Global Superfood</span>
+              </h2>
+              <p className="text-gray-700 text-base leading-relaxed">
+                Millets have sustained civilizations in India for over 5,000 years, thought resistant, nutrient-rich, and increasingly creative and versatile. Those humble grains were once staples in Indian households long before wheat or rice took over. But somewhere along the road to industrialized agriculture, they were forgotten. Now, they're making a comeback — as global milk. It's a story of resilience — of a grain making a comeback with purpose.
+              </p>
             </div>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
+              <span role="img" aria-label="Special">🦾</span> What Makes Millet Milk So Special?
+            </h3>
+            <ul className="list-disc pl-5 text-gray-700 mb-3 space-y-1">
+              <li>Nut-free & Gov-free</li>
+              <li>Low glycemic & gut–friendly</li>
+              <li>Sustainable</li>
+              <li>Naturally nutritious</li>
+            </ul>
+            <p className="text-gray-700 text-base">It's not just milk. <span className="font-semibold text-emerald-800">It's a story of resilience</span> — of a grain making a comeback with purpose.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
+              <span role="img" aria-label="Offer">📝</span> What We Offer
+            </h3>
+            <ul className="list-disc pl-5 text-gray-700 mb-3 space-y-1">
+              <li>At QualFirst, we don't just source. We partner, to nourish milk.</li>
+              <li>R&D • Recipe Development — geared for retail chains, flavored SKUs, sugarfree options</li>
+              <li>Private Label & Branding Support — ready for USA, EU, CCC markets</li>
+              <li>Custom Packaging — bottles, cans, pouches, Tetra</li>
+              <li>Certifications • Compliance — USFDA, FESAL ISO22000</li>
+              <li>Full Export Logistics — from sample to scale</li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row gap-4 justify-center mt-8">
+          <Link to="/contact" className="w-full md:w-auto">
+            <Button variant="outline" className="w-full md:w-auto border-emerald-700 text-emerald-700 hover:bg-emerald-50">Request Millet Samples</Button>
+          </Link>
+          <Link to="/contact" className="w-full md:w-auto">
+            <Button variant="outline" className="w-full md:w-auto border-emerald-700 text-emerald-700 hover:bg-emerald-50">Talk to Our Team</Button>
+          </Link>
+          <Link to="/products" className="w-full md:w-auto">
+            <Button className="w-full md:w-auto bg-emerald-700 text-white hover:bg-emerald-800">Explore Full Portfolio</Button>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 

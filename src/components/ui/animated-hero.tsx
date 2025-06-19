@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["revolutionary", "ancient", "sustainable", "nutritious", "next-gen"],
+    () => ["revolutionary", "ancient", "sustainable", "nutritious", "tastier"],
     []
   );
 
@@ -27,7 +27,7 @@ function Hero() {
       <div className="container mx-auto">
         <div className="flex gap-8 py-8 lg:py-12 items-center justify-center flex-col">
           <div className="mt-4">
-            <Link to="/about-us">
+            <Link to="/launch-article">
               <Button variant="secondary" size="sm" className="gap-4">
                 Read our launch article <MoveRight className="w-4 h-4" />
               </Button>
